@@ -24,6 +24,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [FSL 1588 PTPD简要分析！](https://blog.csdn.net/zjy900507/article/details/69747314)
 > [工业级IEEE1588精密主时钟（从时钟）模块技术详解](https://blog.csdn.net/weixin_44990608/article/details/90716040)
 > [ptpd 守护程序](https://blog.csdn.net/zjy900507/article/details/69744473)
+> [IEEE1588 ( PTP ) 协议简介](https://www.cnblogs.com/adaminxie/p/6754644.html)
 
 # ptp
 [IEEE 1588PTP协议借鉴了NTP技术，具有容易配置、快速收敛以及对网络带宽和资源消耗少等特点。IEEE1588标准的全称是“网络测量和控制系统的精密时钟同步协议标准（IEEE 1588 Precision Clock Synchronization Protocol）”，简称PTP（Precision Timing Protocol），它的主要原理是通过一个同步信号周期性的对网络中所有节点的时钟进行校正同步，可以使基于以太网的分布式系统达到精确同步，IEEE 1588PTP时钟同步技术也可以应用于任何组播网络中。
