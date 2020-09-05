@@ -4,6 +4,9 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# warning: overriding recipe for target
+打开 .pro文件，找 .h或者.cpp有没有重复加载，有的话加载一个即可。
+
 # C/C++混编undefined reference
 调用c文件中的函数出现undefined reference to `xxxxx()'。这是C/C++兼容问题，在C的头文件的相关函数声明添加extern "C"即可解决，
 ```c

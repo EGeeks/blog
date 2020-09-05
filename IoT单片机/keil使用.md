@@ -6,6 +6,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 参考
 > [Keil工程下各个后缀名文件的作用](https://blog.csdn.net/ningxuanyu5854/article/details/78438005)
+> [Keil uVision4 for ARM 下增加支持C51,C5x](https://blog.csdn.net/skertone/article/details/7046447)
 
 # Git
 后缀名uvopt和uvproj都是keil工程文件，共同说明这你工程里有哪些文件，文件有没有被编译过，工程目录树是怎么组织的等等信息，所以将这两个文件添加到git即可。

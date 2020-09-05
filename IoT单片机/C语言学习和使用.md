@@ -6,8 +6,32 @@ QQ群：**852283276**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
 # 参考
-[宏定义中的#,##](https://blog.csdn.net/jiangjingui2011/article/details/6706967)
-[关于宏##的使用注意一点](https://blog.csdn.net/lovewubo/article/details/37937455)
+> [宏定义中的#,##](https://blog.csdn.net/jiangjingui2011/article/details/6706967)
+> [关于宏##的使用注意一点](https://blog.csdn.net/lovewubo/article/details/37937455)
+> [c语言 得到结构体成员偏移](https://blog.csdn.net/whatday/article/details/105000046)
+
+# 计算结构体成员的偏移
+3种方法，
+```cpp
+#include <stdio.h>
+#include <stddef.h>
+ 
+struct stru {
+    char c;
+    int  i;
+};
+ 
+int main(int argc, char *argv[])
+{
+    struct stru s;
+ 
+    printf("Offset of stru.i:        %ld\n", (size_t)((char*)&s.i - (char*)&s));
+    printf("&((struct stru *)0)->i:  %ld\n", (size_t)&((struct stru*)0)->i);
+    printf("offsetof(struct stru,i): %ld\n", offsetof(struct stru, i));
+ 
+    return 0;
+}
+```
 
 # warning C206: missing function-prototype
 单片机程序，引用DelayMs，

@@ -4,6 +4,12 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 参考
+> [***WARNING L15: MULTIPLE CALL TO SEGMENT](https://www.cnblogs.com/CuriosityWzk/archive/2011/12/25/2301090.html)
+
+# MULTIPLE CALL TO FUNCTION
+这是因为我在main，timer0和timer3的中断函数都调用了一个STC库函数`PWMx_SetPwmWide_int`导致的，参考[***WARNING L15: MULTIPLE CALL TO SEGMENT](https://www.cnblogs.com/CuriosityWzk/archive/2011/12/25/2301090.html)，采用了一个比较笨的方法，将函数`PWMx_SetPwmWide_int`拷贝了两遍分别用于timer0和timer3的中断函数。
+
 # UNCALLED SEGMENT,IGNORED FOR OVERLAY PROCESS
 解决无用代码占用ROM空间和去除编译告警，
 ![3](https://img-blog.csdnimg.cn/20200813224911820.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
