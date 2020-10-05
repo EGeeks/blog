@@ -18,6 +18,18 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Ubuntu18.04修改登录页面背景](https://blog.csdn.net/TalonZhang/article/details/82498114)
 > [Windows 10 太难用，如何定制你的 Ubuntu？](https://blog.csdn.net/csdnnews/article/details/108093966)
 
+# 输入法配置
+> [Ubuntu系统中添加中文输入法及其快捷键的设置](https://blog.csdn.net/qq_27806947/article/details/80157419)
+> [Ubuntu 安装中文输入法](https://blog.csdn.net/Chamico/article/details/89788324)
+> [在Ubuntu中配置中文输入法](https://blog.csdn.net/nanhuaibeian/article/details/85851335)
+
+安装后重启即可，
+```bash
+$ sudo apt install fcitx
+$ sudo apt install fcitx-pinyin
+$ sudo apt install fcitx-table-wbpy # 五笔
+```
+
 # Ubuntu和Windows时间差8小时
 Ubuntu18.04，
 ```bash
@@ -26,7 +38,7 @@ $ sudo apt-get install ntpdate
 $ sudo ntpdate time.windows.com
 $ sudo hwclock --localtime --systohc
 ```
-或者设置Windows，重启系统后即可生效。
+或者设置Windows，重启系统后即可生效。更改Windows时区为UTC，更改虚拟机Ubuntu时区为上海。
 ```bash
 $ reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
 ```
@@ -66,7 +78,7 @@ $ sudo usermod -aG wireshark $(whoami)
 ```bash
 $ pkexec chmod 0440 /etc/sudoers
 ```
-添加写权限，
+添加写权限，使用vim，`wq!`写入，
 ```bash
 $ pkexec chmod 555 /etc/sudoers
 $ pkexec chmod 555 /etc/sudoers.d/README

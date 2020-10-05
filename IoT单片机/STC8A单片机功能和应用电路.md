@@ -29,6 +29,8 @@ PCA模块可以当成定时器使用，可以输出PWM波，但通常用于测�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190521225305950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 PCA的计数时钟有如下选择，通常选择`100b`即系统时钟，
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019052123000035.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+PCA的中断源，
+![7](https://img-blog.csdnimg.cn/20200923222131335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
 PWM在手册里指的是增强型PWM，PWM使用的原理和PCA差不多，一个统一的计数器PWMCH/L，这个计数器控制着PWM周期，对应8个通道，每个通道可以设置两个反转点，PWMxCR可设置初始电平，在遇到反转点的时候，IO电平反转，通过反转点可以控制占空比和相位，
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190522232050843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 PWM可以在P1，P2，P6之间切换，

@@ -4,6 +4,10 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 禁止QQ弹出腾讯网新闻
+![6](https://img-blog.csdnimg.cn/20200920132553564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
+
+
 # 禁用驱动程序强制签名
 Win7开机按F8，可临时禁用驱动程序强制签名，Win10，
 ```cpp
