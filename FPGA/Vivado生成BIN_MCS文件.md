@@ -11,6 +11,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [FPGA BPI加载时间计算](https://blog.csdn.net/weixin_42564775/article/details/85084205)
 > [7系列FPGA上电配置流程](https://blog.csdn.net/weixin_42564775/article/details/88360063)
 > [ISE XILINX BPI EMCCLK 配置实现](https://www.amobbs.com/thread-5594364-1-1.html?_dsign=9ab4274d)
+> [配置文件的自动化生成和管理](https://forums.xilinx.com/t5/Xilinx-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%8A%9F%E8%83%BD%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%9F%E6%88%90%E5%92%8C%E7%AE%A1%E7%90%86/ba-p/1076440)
 
 # 方法
 xdc约束，xc7k325t，PC28F00AP30TF，[如果使用CCLK，配置速率最大为66Mhz，所以在高速配置FPGA的需求下，需要外部EMCCLK来满足配置时间的要求。EMCCLK最大频率计算方法见下面的公式，并且不能超过DS181, DS182, 和 DS183文档中定义的最大值。在7系列中，常见的EMCCLK时钟频率为100Mhz。比如对于K7325T，通过查阅bitstream size的大小为91,548,896 bits（87.3Mb）](http://design.eccn.com/design_2016120213185161.htm)，如果VCCO0连接至2.5V或3.3V，CFGBVS连接至VCCO0，如果VCCO0连接至1.5V或1.8V，CFGBVS连接至GND。

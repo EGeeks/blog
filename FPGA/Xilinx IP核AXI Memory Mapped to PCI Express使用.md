@@ -98,3 +98,6 @@ Root -> M_AXI[AXI-PCIe Bridge] -> BAR
 ```
 其中S_AXI上的地址转换可以通过寄存器配置，FPGA做EP时，这个值是由PCIe驱动写入的，低地址为高32字节，高地址为低32字节，在32位地址模式下，只使用低32字节。
 ![204](https://img-blog.csdnimg.cn/20190903101812693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+# 眼图
+> [利用 IP 中的集成调试功能来调试 PCI Express 链接训练](https://forums.xilinx.com/t5/Xilinx-%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%8A%9F%E8%83%BD%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E5%88%A9%E7%94%A8-IP-%E4%B8%AD%E7%9A%84%E9%9B%86%E6%88%90%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD%E6%9D%A5%E8%B0%83%E8%AF%95-PCI-Express-%E9%93%BE%E6%8E%A5%E8%AE%AD%E7%BB%83/ba-p/1123297)
