@@ -4,6 +4,12 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 作者
+QQ群：**852283276**
+微信：**arm80x86**
+微信公众号：**青儿创客基地**
+B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
+
 # 参考
 > [官网下载](https://china.xilinx.com/support/download.html)
 > [vivado 设置 多线程编译](https://blog.csdn.net/angelbosj/article/details/51596146)

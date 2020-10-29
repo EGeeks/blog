@@ -43,6 +43,15 @@ $ sudo hwclock --localtime --systohc
 $ reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
 ```
 
+# NTFS硬盘在Linux挂载失败
+挂载时报错`The disk contains an unclean file system (0, 0). Metadata kept in Windows ca`，在电源按钮功能设置界面，关掉快速启动。
+![311](https://img-blog.csdnimg.cn/2020053015551449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+# NTFS硬盘在Linux挂载成只读文件系统
+在Linux下执行，
+```bash
+$ mount -t ntfs-3g -o remove_hiberfile /dev/sda4 ./win10
+```
+
 # 换源
 打开`软件和更新`，可以选择阿里的。
 
@@ -126,3 +135,10 @@ ubuntu20.04 `Shift`
 > [Ubuntu 18.04 安装 NVIDIA 显卡驱动](https://zhuanlan.zhihu.com/p/59618999)
 
 不更新之前，屏幕闪屏，搜索打开`软件和更新`，附加驱动，选择安装nvdia的驱动。
+
+# 安装工具
+安装常用工具，
+```bash
+$ sudo apt install tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils memtool devmem2
+```
+

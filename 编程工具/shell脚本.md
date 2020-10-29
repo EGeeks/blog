@@ -4,6 +4,55 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 查找域名对应的ip
+使用`nslookup`，
+```bash
+$ nslookup www.baidu.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+www.baidu.com	canonical name = www.a.shifen.com.
+Name:	www.a.shifen.com
+Address: 183.232.231.172
+Name:	www.a.shifen.com
+Address: 183.232.231.174
+
+```
+
+# patch
+> [四种常用的打Patch方法 ](http://cxy7.com/articles/2018/06/11/1528724449109.html)
+> [打patch的方法](https://blog.csdn.net/miss_lazygoat/article/details/50056407)
+
+```bash
+$ patch [-R] {-p(n)} [--dry-run] < patch_file_name
+```
+- p：为path的缩写。
+- n：指将patch文件中的path第n条"/"及其左边部分取消，生成的补丁中, 路径信息包含了你的Linux源码根目录的名称, 但其他人的源码根目录可能是其它名字, 所以, 打补丁时, 要进入你的Linux源码根目录, 并且告诉patch工具, 请忽略补丁中的路径的第一级目录(参数-p1).
+- -R：卸载patch包。
+- --dry-run：尝试patch软件，并不真正修改软件。
+
+# 正则表达式
+> [正则表达式 - 教程](https://www.runoob.com/regexp/regexp-tutorial.html)
+
+# 加减乘除
+> [shell 加法计算](https://www.cnblogs.com/sea-stream/p/9883491.html)
+
+```bash
+val=$(expr 10 + 20)
+```
+
+# 操作16进制
+> [linux echo 写二进制文件](https://blog.csdn.net/whatday/article/details/96875933)
+> [linux shell 下各种进制数据转换。](https://blog.csdn.net/hejinjing_tom_com/article/details/12650417)
+
+`$ echo -e -n "\x11\x22" > test`，`-e`表示使能反斜杠转义，这样遇到`\`就会转义为二进制，`-n`不添加行尾换行标识，因为echo默认会在末尾添加`0x0A`。
+
+# 文件比较
+- cmp 以字节为单位
+- diff 以行为单位
+- patch 以diff为基础
+
 # rar文件
 ```bash
 $ sudo apt-get install rar unrar
@@ -62,11 +111,13 @@ sudo dpkg-reconfigure dash
 Ctrl+d
 
 # /bin/sh^M: bad interpreter
+```shell
 vim test.sh
 :set ff?
 如果出现fileforma＝dos那么就基本可以确定是这个问题了。
 :set fileformat=unix
 :wq
+```
 
 # chown chgrp
 使用chown命令来改变文件所有者。chown命令是change owner（改变拥有者）的缩写。需要要注意的是，用户必须是已经存在系统中的，也就是只能改变为在 /etc/passwd这个文件中有记录的用户名称才可以。
@@ -143,30 +194,35 @@ basename [string] [suffix]
 basename 命令读取 String 参数，删除以 /(斜杠) 结尾的前缀以及任何指定的 Suffix 参数，并将剩余的基本文件名称写至标准输出。
 
 # 字符串
+
+## 字符串比较
 > [Shell数值、字符串比较](https://www.cnblogs.com/happyhotty/articles/2065412.html)
+
+`=`等于，如`if [ "$a" = "$b" ] `
+`==`等于，如`if [ "$a" == "$b" ]`，与=等价 
+注意`==`的功能在`[[]]`和`[]`中的行为是不同的，如下，
+1 `[[ $a == z* ]]`    # 如果$a以"z"开头(模式匹配)那么将为true 
+2 `[[ $a == "z*" ]]` # 如果$a等于z*(字符匹配),那么结果为true 
+3 `[ $a == z* ] `     # File globbing 和word splitting将会发生 
+4 `[ "$a" == "z*" ]` # 如果`$a`等于`z*`(字符匹配),那么结果为true 
+一点解释,关于File globbing是一种关于文件的速记法,比如`"*.c"`就是,再如`~`也是，但是file globbing并不是严格的正则表达式，虽然绝大多数情况下结构比较像。
+`!=`不等于,如:`if [ "$a" != "$b" ] `这个操作符将在`[[]]`结构中使用模式匹配. 
+大于，在ASCII字母顺序下，如`if [[ "$a" > "$b" ]] `，`if [ "$a" \> "$b" ] `，注意在`[]`结构中`">"`需要被转义。 
+`-z`字符串为null，就是长度为0。
+`-n`字符串不为null。
+
+
+## 字符串截取
 > [shell脚本字符串截取的8种方法](https://www.cnblogs.com/zwgblog/p/6031256.html)
 
-字符串模式匹配
-字符串比较 
-=       等于,如:if [ "$a" = "$b" ] 
-==       等于,如:if [ "$a" == "$b" ],与=等价 
-       注意:==的功能在[[]]和[]中的行为是不同的,如下: 
-       1 [[ $a == z* ]]    # 如果$a以"z"开头(模式匹配)那么将为true 
-       2 [[ $a == "z*" ]] # 如果$a等于z*(字符匹配),那么结果为true 
-       3 
-       4 [ $a == z* ]      # File globbing 和word splitting将会发生 
-       5 [ "$a" == "z*" ] # 如果$a等于z*(字符匹配),那么结果为true 
-       一点解释,关于File globbing是一种关于文件的速记法,比如"*.c"就是,再如~也是. 
-       但是file globbing并不是严格的正则表达式,虽然绝大多数情况下结构比较像. 
-!=       不等于,如:if [ "$a" != "$b" ] 
-       这个操作符将在[[]]结构中使用模式匹配. 
-       大于,在ASCII字母顺序下.如: 
-       if [[ "$a" > "$b" ]] 
-       if [ "$a" \> "$b" ] 
-       注意:在[]结构中">"需要被转义. 
-       具体参考Example 26-11来查看这个操作符应用的例子. 
--z       字符串为"null".就是长度为0. 
--n       字符串不为"null" 
+`#`截取功能，删除最左匹配项的左边字符，保留右边字符。`##`表示删除最右匹配项的左边字符。
+`%`截取功能，删除最右匹配项的右边字符，保留左边字符。`%%`表示删除最左匹配项的右边字符。
+```
+echo ${var#*/}
+echo ${var##*a}
+echo ${var%c*}
+echo ${var%%b*}
+```
 
 # grep
 linux用grep从文件中查找匹配字符串，注意第二种里面查找的字符串里有一个横线，这就fuck了，一直报错，不能带小横线啊，
@@ -222,5 +278,9 @@ do
 	new_bin_file=${bin_file##*-}
 	cp -vf $cur_path/t2080-$FSL_PPC64E6500_TOOLCHAIN_VER/bin/$bin_file $package_path/app/bin/$new_bin_file
 done
+```
+只搜索当前文件夹，不递归搜索，
+```bash
+$ find . -maxdepth 1 -regex "./\w.*"
 ```
 

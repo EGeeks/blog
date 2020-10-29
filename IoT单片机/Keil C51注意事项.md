@@ -6,6 +6,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 参考
 > [***WARNING L15: MULTIPLE CALL TO SEGMENT](https://www.cnblogs.com/CuriosityWzk/archive/2011/12/25/2301090.html)
+> [呵，你会51单片机的精确延时吗？](https://mp.weixin.qq.com/s/eJsaLpudAVED22QsQpkeqg)
 
 # MULTIPLE CALL TO FUNCTION
 这是因为我在main，timer0和timer3的中断函数都调用了一个STC库函数`PWMx_SetPwmWide_int`导致的，参考[***WARNING L15: MULTIPLE CALL TO SEGMENT](https://www.cnblogs.com/CuriosityWzk/archive/2011/12/25/2301090.html)，采用了一个比较笨的方法，将函数`PWMx_SetPwmWide_int`拷贝了两遍分别用于timer0和timer3的中断函数。

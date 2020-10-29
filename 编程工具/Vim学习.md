@@ -21,7 +21,6 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 效果
 ubuntu18.04 LTS， Vim8.2，和Source Insight的用户体验还是没法比，熟悉中，工作三年，才学Vim，一直Si，现在学习Vim纯粹是为了在部门年轻同事面前装B，别无他用！没人在的时候我就切出Vim，有人在的时候立刻打开Si！！！不能因为正事耽误装B。
 ![2020-10-07 23-40-26](https://img-blog.csdnimg.cn/20201007234514722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
-
 # 安装
 安装`ctags`，`cscope`用于阅读内核源代码，
 ```bash
@@ -118,6 +117,13 @@ E185: Cannot find color scheme 'solarized'
 ```
 
 # 使用
+## 行定位
+显示行号：命令模式下set nu
+命令模式下，:n   比如想到第2行，:2
+编辑模式下，ngg  比如想到第5行 5gg(或者5G)
+打开文件定位到指定行   vim  +n  test.txt
+查看当前行信息 ctrl+g
+
 ## 工作目录
 执行vim所在的目录即为工作目录，NERDTree显示当前目录
 

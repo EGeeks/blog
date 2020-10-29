@@ -7,6 +7,10 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 参考
 > [TCL script to auto-generate a jtag boot script based on HDF file for Zynq Ultrascale](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/84444479/TCL+script+to+auto-generate+a+jtag+boot+script+based+on+HDF+file+for+Zynq+Ultrascale)
 > [Programming QSPI from U-boot ZC702](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842240/Programming+QSPI+from+U-boot+ZC702)
+> [AR# 67871 Zynq UltraScale+ MPSoC: MicroBlaze PMU MDM is disabled by default on ES2 and higher.](https://china.xilinx.com/support/answers/67871.html)
+> [Debugging U-Boot drivers in SDK 2018.3](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/71827726/Debugging+U-Boot+drivers+in+SDK+2018.3)
+> [Debug U-boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842557/Debug+U-boot)
+
 # tcl语法
 （1）if 判断，{}中的语句需要用[]括起来
 ```shell
@@ -171,18 +175,5 @@ xsct% hsi::generate_app -app zynqmp_fsbl -proc psu_cortexa53_0 -dir zynqmp_fsbl 
 tcl加法，自动支持10/16进制，
 ```shell
 xsct% set ddr_len [expr $ddr_len + 1]
-```
-# 板卡下载调试
-zynq上执行u-boot，
-```bash
-connect
-source ps7_init.tcl
-targets -set -filter {name =~ "APU"}
-ps7_init
-ps7_post_config
-targets -set -filter {name =~ "ARM Cortex-A9 MPCore #0"}
-dow -data BOOT.BIN 0x08000000
-dow u-boot.elf
-con
 ```
 
