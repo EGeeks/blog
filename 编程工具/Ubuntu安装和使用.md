@@ -17,6 +17,31 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Ubuntu16.04LTS更改开机背景和开机动画](https://blog.csdn.net/ArthurCaoMH/article/details/88093054)
 > [Ubuntu18.04修改登录页面背景](https://blog.csdn.net/TalonZhang/article/details/82498114)
 > [Windows 10 太难用，如何定制你的 Ubuntu？](https://blog.csdn.net/csdnnews/article/details/108093966)
+> [利用logrotate 防止linux系统日志文件过大](https://blog.csdn.net/qq_26614295/article/details/79923056)
+> [ubuntu系统日志的配置和使用](https://blog.csdn.net/brosnan2880/article/details/84295775)
+> [logrotate - 如何防止日志变得太大？](https://www.kutu66.com/ubuntu/article_161023)
+
+
+# 关闭unattended-upgrade
+```bash
+$ cat /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "0";
+```
+
+# 限制日志大小
+在`/etc/logrotate.d`新建一个logrotate的配置文件，
+```bash
+/var/log/* {
+ #daily, hourly, weekly, monthly, yearly, maxsize, maxage
+ size 10M
+ rotate 10
+ delaycompress
+ compress
+ notifempty
+ missingok
+}
+```
 
 # 输入法配置
 > [Ubuntu系统中添加中文输入法及其快捷键的设置](https://blog.csdn.net/qq_27806947/article/details/80157419)

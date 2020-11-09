@@ -11,6 +11,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Git冲突：commit your changes or stash them before you can merge.](https://blog.csdn.net/lincyang/article/details/21519333)
 > [Git多账户切换配置](https://blog.csdn.net/Nathan1987_/article/details/98546095)
 > [git 配置多个账户](https://www.jianshu.com/p/8895d239b8cc)
+> [玩转GIT系列之【git submodule update出错提示子模组未对路径注册】](https://blog.csdn.net/LEON1741/article/details/90259836)
 
 # 安装Git
 百度下载Git Windows安装包，安装即可,安装完打开Git Bash，配置Git。
@@ -108,6 +109,10 @@ remote: Compressing objects: 100% (9/9), done.
 remote: Total 12 (delta 3), reused 12 (delta 3), pack-reused 0
 Receiving objects: 100% (12/12), 4.39 KiB | 0 bytes/s, done.
 Resolving deltas: 100% (3/3), done.
+```
+对于有submodule的，
+```bash
+$ git submodule update --init --recursive
 ```
 
 ## fatal: refusing to merge unrelated histories
@@ -260,6 +265,14 @@ $ git reset --soft HEAD~1
 ## 删除GitHub仓库
 点击进入Repositories（仓库），点击Settings，拖到网页最下方，点击删除，删除过程中会让你输入仓库名字确认删除。
 
+## Raw
+需手动配置raw IP，打开网站[ipaddress](https://www.ipaddress.com/)，搜索`raw.githubusercontent.com`，配置host文件，
+```bash
+# C:\Windows\System32\drivers\etc\hosts
+# GitHub raw & imag
+199.232.68.133 raw.githubusercontent.com
+```
+
 # Gitee
 ## 配置
 添加SSH，`C:\Users\**\.ssh\id_isa.pub`，
@@ -298,3 +311,8 @@ git push -u origin master
 ## warning: LF will be replaced by CRLF
 备份博客时发现所有文字显示成一行了。
 > [git提示“warning: LF will be replaced by CRLF”的解决办法](https://blog.csdn.net/u012757419/article/details/105614028/)
+
+## git submodule update出错提示子模组未对路径注册或者请确认您有正确的访问权限并且仓库存在
+> [github克隆项目中的子模块submodule时遇到的问题](https://blog.k-res.net/archives/1595.html)
+
+`vi .gitmodules`，统一url格式是`https`还是`git`，然后执行`git submodule sync`再继续之前的操作。
