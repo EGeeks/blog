@@ -12,6 +12,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Git多账户切换配置](https://blog.csdn.net/Nathan1987_/article/details/98546095)
 > [git 配置多个账户](https://www.jianshu.com/p/8895d239b8cc)
 > [玩转GIT系列之【git submodule update出错提示子模组未对路径注册】](https://blog.csdn.net/LEON1741/article/details/90259836)
+> [Git修改提交的仓库地址](https://blog.csdn.net/csdn_flyyoung/article/details/87905077)
 
 # 安装Git
 百度下载Git Windows安装包，安装即可,安装完打开Git Bash，配置Git。
@@ -272,6 +273,9 @@ $ git reset --soft HEAD~1
 # GitHub raw & imag
 199.232.68.133 raw.githubusercontent.com
 ```
+
+## 修改仓储地址
+修改.git目录下的config文件。
 
 # Gitee
 ## 配置

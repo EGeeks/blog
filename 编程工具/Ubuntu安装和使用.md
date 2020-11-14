@@ -22,6 +22,9 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [logrotate - 如何防止日志变得太大？](https://www.kutu66.com/ubuntu/article_161023)
 
 
+# 华硕主板启动Ubuntu18.04
+在启动里面开启CSM，存储设备选择忽略，默认是仅Legacy。
+
 # 关闭unattended-upgrade
 ```bash
 $ cat /etc/apt/apt.conf.d/20auto-upgrades

@@ -4,10 +4,27 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+
+# XP Chrome 您的时钟快了
+安装KB931125补丁，rootsupd.exe，一闪而过就安装好了。
+
+# pci内存控制器和sm总线控制器驱动安装
+参考[Win7装机时PCI简易通讯控制器叹号处理](https://blog.csdn.net/salutlu/article/details/18142853),选择系统设备，Intel即可。
+
+# 启用或关闭Windows功能
+搜索打开控制面板，选择程序，选择启用或关闭Windows功能。
+
+# DHCP服务器
+安装DHCP服务器，
+```cpp
+设置 > 应用和功能 > 可选功能 > 添加功能 > RSAT: DHCP服务器工具
+```
+Windows管理工具打开DHCP程序，添加一个DHCP服务即可。
+
+# 休眠按钮与快速启动
+![20](https://img-blog.csdnimg.cn/20201011124416739.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
 # 禁止QQ弹出腾讯网新闻
 ![6](https://img-blog.csdnimg.cn/20200920132553564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
-
-
 # 禁用驱动程序强制签名
 Win7开机按F8，可临时禁用驱动程序强制签名，Win10，
 ```cpp
@@ -28,9 +45,15 @@ Win7开机按F8，可临时禁用驱动程序强制签名，Win10，
 # 双系统删除方法
 Win7用Win+R，Win10直接在任务栏搜索窗口输入msconfig，打开系统配置，在引导选项卡删除系统引导项，
 ![这里写图片描述](https://imgconvert.csdnimg.cn/aHR0cDovL3d3dy54aXRvbmd6aGlqaWEubmV0L3VwbG9hZHMvYWxsaW1nLzE2MTEwOS83My0xNjExMFo5M0o0LTUwLXdhdGVyLmpwZw?x-oss-process=image/format,png)
-# NTFS磁盘在Linux挂载失败
+# NTFS硬盘在Linux挂载失败
 挂载时报错`The disk contains an unclean file system (0, 0). Metadata kept in Windows ca`，在电源按钮功能设置界面，关掉快速启动。
 ![311](https://img-blog.csdnimg.cn/2020053015551449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+# NTFS硬盘在Linux挂载成只读文件系统
+在Linux下执行，
+```bash
+$ mount -t ntfs-3g -o remove_hiberfile /dev/sda4 ./win10
+```
+
 # ping
 > [解除win10禁ping方法](https://blog.csdn.net/wudinaniya/article/details/80956158)
 
