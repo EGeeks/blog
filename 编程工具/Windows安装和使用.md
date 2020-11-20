@@ -4,10 +4,6 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
-
-# XP Chrome 您的时钟快了
-安装KB931125补丁，rootsupd.exe，一闪而过就安装好了。
-
 # pci内存控制器和sm总线控制器驱动安装
 参考[Win7装机时PCI简易通讯控制器叹号处理](https://blog.csdn.net/salutlu/article/details/18142853),选择系统设备，Intel即可。
 

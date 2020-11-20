@@ -4,7 +4,16 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
-# ubuntu16.04.6
+
+# 参考
+> [Vitis Unified Software Development Platform 2020.1 Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/index.html)
+> [Vitis Application Acceleration Development Flow Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/kme1569523964461.html)
+> [Vitis Embedded Software Development Flow Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hly1569525384514.html)
+
+# Windows
+Vivado打不开，Vitis闪退，通过命令行执行发现`Error: The file D:/Xilinx/Vivado/2020.1/lib/win64.o/librdi_device.dll is corrupt. Please re-install `，重新解压缩安装包安装后问题消失，文件在硬盘里放久了竟然损坏了？事事不顺，软件安了一天。
+
+# Ubuntu16.04.6
 安装Vitis，执行，
 ```bash
 $ chmod -Rf 777 /opt

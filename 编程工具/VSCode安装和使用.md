@@ -23,3 +23,6 @@ Ctrl+~ 打开命令行输入页面，默认为Powershell，选中文本，点击
 File > Preferences > Settings
 ```
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190227212157955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+# 插件
+## verilog
+搜索Market，安装`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`，这个下载量最大。。。

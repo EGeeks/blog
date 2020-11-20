@@ -8,6 +8,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [SecureCRT & SecureFX](https://blog.csdn.net/u012867916/article/details/77430393)
 > [SecureCRT脚本(VBS)运行](https://blog.csdn.net/u011329967/article/details/80210983)
 > [SecureCRT中python脚本编写学习指南](https://www.cnblogs.com/zhaoyujiao/p/4908627.html)
+> [SecureCRT永久设置和配色方案](https://blog.csdn.net/Colorful_lights/article/details/80720761)
+> [SecureCRT 唯美配色方案](https://blog.csdn.net/hgcpkclwcx/article/details/78929737/)
 
 # SecureCRT脚本自动发送stop
 菜单`Script > Run`或`Script > Cancel`，可添加到button快捷键。
