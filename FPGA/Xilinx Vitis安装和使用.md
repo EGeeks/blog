@@ -9,11 +9,15 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Vitis Unified Software Development Platform 2020.1 Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/index.html)
 > [Vitis Application Acceleration Development Flow Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/kme1569523964461.html)
 > [Vitis Embedded Software Development Flow Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/hly1569525384514.html)
+> ug1144
+> [how to add or modify petalinux 2016.4 yocto kernel source or devictree source?](https://forums.xilinx.com/t5/Embedded-Linux/how-to-add-or-modify-petalinux-2016-4-yocto-kernel-source-or/m-p/742861)
+> [An example of using FILES_${PN}](https://stackoverflow.com/questions/46071039/an-example-of-using-files-pn)
 
 # Windows
 Vivado打不开，Vitis闪退，通过命令行执行发现`Error: The file D:/Xilinx/Vivado/2020.1/lib/win64.o/librdi_device.dll is corrupt. Please re-install `，重新解压缩安装包安装后问题消失，文件在硬盘里放久了竟然损坏了？事事不顺，软件安了一天。
 
 # Ubuntu16.04.6
+## Vitis
 安装Vitis，执行，
 ```bash
 $ chmod -Rf 777 /opt
@@ -24,10 +28,3 @@ $ ./xsetup
 $ cd /opt/Xilinx/Vivado/2019.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/
 $ sudo ./install_drivers
 ```
-安装petalinux，
-```bash
-$ mkdir -p /opt/Xilinx/Petalinux/2019.2
-$ ./petalinux-v2019.2-final-installer.run /opt/Xilinx/Petalinux/2019.2
-$ sudo dpkg-reconfigure dash #选择no
-```
-

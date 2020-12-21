@@ -31,6 +31,68 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 　　IEEE 1588将整个网络内的时钟分为两种，即普通时钟（Ordinary Clock，OC）和边界时钟（Boundary Clock，BC），只有一个PTP通信端口的时钟是普通时钟，有一个以上PTP通信端口的时钟是边界时钟，每个PTP端口提供独立的PTP通信。其中，边界时钟通常用在确定性较差的网络设备（如交换机和路由器）上。从通信关系上又可把时钟分为主时钟和从时钟，理论上任何时钟都能实现主时钟和从时钟的功能，但一个PTP通信子网内只能有一个主时钟。整个系统中的最优时钟为最高级时钟GMC（Grandmaster Clock），有着最好的稳定性、精确性、确定性等。根据各节点上时钟的精度和级别以及UTC（通用协调时间）的可追溯性等特性，由最佳主时钟算法（Best Master Clock）来自动选择各子网内的主时钟；在只有一个子网的系统中，主时钟就是最高级时钟GMC。每个系统只有一个GMC，且每个子网内只有一个主时钟，从时钟与主时钟保持同步。](https://blog.csdn.net/weixin_44990608/article/details/90716040)
 PTP中的名词，
 ![207](https://img-blog.csdnimg.cn/20191010214741879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+# 网卡特性查看
+华硕B450M-Plus重炮手主板板载的千兆网卡，Intel的，不是螃蟹的，支持ptp，
+```bash
+qe@qe-pc:~$ ethtool -T eno1
+Time stamping parameters for eno1:
+Capabilities:
+	hardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)
+	software-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)
+	hardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)
+	software-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)
+	software-system-clock (SOF_TIMESTAMPING_SOFTWARE)
+	hardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)
+PTP Hardware Clock: 0
+Hardware Transmit Timestamp Modes:
+	off                   (HWTSTAMP_TX_OFF)
+	on                    (HWTSTAMP_TX_ON)
+Hardware Receive Filter Modes:
+	none                  (HWTSTAMP_FILTER_NONE)
+	all                   (HWTSTAMP_FILTER_ALL)
+	ptpv1-l4-sync         (HWTSTAMP_FILTER_PTP_V1_L4_SYNC)
+	ptpv1-l4-delay-req    (HWTSTAMP_FILTER_PTP_V1_L4_DELAY_REQ)
+	ptpv2-l4-sync         (HWTSTAMP_FILTER_PTP_V2_L4_SYNC)
+	ptpv2-l4-delay-req    (HWTSTAMP_FILTER_PTP_V2_L4_DELAY_REQ)
+	ptpv2-l2-sync         (HWTSTAMP_FILTER_PTP_V2_L2_SYNC)
+	ptpv2-l2-delay-req    (HWTSTAMP_FILTER_PTP_V2_L2_DELAY_REQ)
+	ptpv2-event           (HWTSTAMP_FILTER_PTP_V2_EVENT)
+	ptpv2-sync            (HWTSTAMP_FILTER_PTP_V2_SYNC)
+	ptpv2-delay-req       (HWTSTAMP_FILTER_PTP_V2_DELAY_REQ)
+```
+软件时间戳需要包括参数，
+```bash
+SOF_TIMESTAMPING_SOFTWARE
+SOF_TIMESTAMPING_TX_SOFTWARE
+SOF_TIMESTAMPING_RX_SOFTWARE
+```
+硬件时间戳需要包括参数，
+```bash
+SOF_TIMESTAMPING_RAW_HARDWARE
+SOF_TIMESTAMPING_TX_HARDWARE
+SOF_TIMESTAMPING_RX_HARDWARE
+```
+买的二手Mallonex CX-3万兆网卡，貌似功能做的还是没有Intel全，
+```bash
+$ ethtool -T enp1s0
+Time stamping parameters for enp1s0:
+Capabilities:
+	hardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)
+	software-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)
+	hardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)
+	software-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)
+	software-system-clock (SOF_TIMESTAMPING_SOFTWARE)
+	hardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)
+PTP Hardware Clock: 1
+Hardware Transmit Timestamp Modes:
+	off                   (HWTSTAMP_TX_OFF)
+	on                    (HWTSTAMP_TX_ON)
+Hardware Receive Filter Modes:
+	none                  (HWTSTAMP_FILTER_NONE)
+	all                   (HWTSTAMP_FILTER_ALL)
+
+```
+
 # ptp4l
 使用记得加`sudo`
 ```shell

@@ -35,7 +35,7 @@ Ubuntu Linux 16.04.3 (64-bit)
 准备软件vmware workstation player，ubuntu16.04.6的镜像ISO文件，petalinux安装文件。
 **在虚拟机上安装petalinux软件依赖包**
 ```bash
-$ sudo apt-get install tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils
+$ sudo apt-get install tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils ssh make
 ```
 **安装petalinux**
 比如安装在路径`/opt/pkg/petalinux-v2019.2-final`，执行下面操作。

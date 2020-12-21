@@ -99,5 +99,15 @@ SCT，状态码的类型，
 
 Dataset Management command可以通过设置Dword 11的Attribute-Deallocate（AD）字段deallocate一定范围的LBA，deallocate也就是通常所说的Trim。SSD收到AD字段为1的Dataset Management command后，会将相应范围的LBA Trim掉。如果Host针对被Trim的地址发送read命令，SSD应该返回全1，全0或者最后写入的数据。如果使能了deallocated 或 unwritten logical block error，当Host读取被deallocate区域时，SSD会返回该命令失败并且错误为unwritten或者deallocated logical block error，如果对一个被deallocate的LBA做写操作会导致deallocate状态消失，读操作则没有影响。
 
+# HMB
+> [东芝RC100 M.2 NVMe固态硬盘HMB特性解读](https://zhuanlan.zhihu.com/p/42649209)
+> [4.7 Controller Memory Buffer](https://www.cnblogs.com/hswy/p/12669320.html)
+> [How to enable host memory buffer in Windows10 by registry key?](https://social.technet.microsoft.com/Forums/lync/en-US/04699f35-834c-46dd-96f0-c845b07aaab9/how-to-enable-host-memory-buffer-in-windows10-by-registry-key?forum=win10itprosetup)
+> [NVMe Host Memory Buffer主机内存缓冲效果](http://bbs.pceva.com.cn/thread-134884-1-1.html)
+> [面壁UNH IOL NVMe一致性测试之17 – Host Memory Buffer](http://www.ssdfans.com/?p=106801)
+> [StorPortAllocateHostMemoryBuffer function (storport.h)](https://docs.microsoft.com/zh-cn/windows-hardware/drivers/ddi/storport/nf-storport-storportallocatehostmemorybuffer)
+
+简言之，HMB是给DRAMLess SSD设计的用来存放FTL表的，肯定是比板载的DRAM延迟要大，毕竟经过了PCIe传输。
+![hmb](https://img-blog.csdnimg.cn/20201219172209120.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 
 

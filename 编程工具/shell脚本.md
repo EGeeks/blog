@@ -4,6 +4,18 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# find
+查找文件，
+```bash
+$ find /usr/src/linux-headers-5.3.0-62 -name time_types.h
+```
+
+# 查看文件夹大小
+使用du命令，
+```bash
+$ du -h --max-depth=1 *
+```
+
 # 查找域名对应的ip
 使用`nslookup`，
 ```bash
@@ -17,7 +29,6 @@ Name:	www.a.shifen.com
 Address: 183.232.231.172
 Name:	www.a.shifen.com
 Address: 183.232.231.174
-
 ```
 
 # patch

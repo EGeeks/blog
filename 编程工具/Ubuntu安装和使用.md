@@ -22,6 +22,17 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [logrotate - 如何防止日志变得太大？](https://www.kutu66.com/ubuntu/article_161023)
 
 
+# QQ
+官网下载QQ Linux版本deb包，安装，如果版本更新后登录出现闪退情况，请删除 ~/.config/tencent-qq/#你的QQ号# 目录后重新登录，
+```bash
+$ sudo apt install libgtk2.0-0
+$ sudo apt install -y ./linuxqq_2.0.0-b2-1084_amd64.deb
+```
+卸载，
+```bash
+$ sudo dpkg -r linuxqq
+```
+
 # 华硕主板启动Ubuntu18.04
 在启动里面开启CSM，存储设备选择忽略，默认是仅Legacy。
 
@@ -163,6 +174,14 @@ ubuntu20.04 `Shift`
 > [Ubuntu 18.04 安装 NVIDIA 显卡驱动](https://zhuanlan.zhihu.com/p/59618999)
 
 不更新之前，屏幕闪屏，搜索打开`软件和更新`，附加驱动，选择安装nvdia的驱动。
+卸载驱动，重新安装，
+```bash
+$ ubuntu-drivers devices
+$ sudo apt-get remove --purge nvidia-*
+$ sudo apt-get remove --purge libnvidia-*
+$ sudo apt-get remove --purge libnvidia-compute-440:i386 libnvidia-decode-440:i386 libnvidia-encode-440:i386 libnvidia-fbc1-440:i386
+$ sudo ubuntu-drivers autoinstall
+```
 
 # 安装工具
 安装常用工具，

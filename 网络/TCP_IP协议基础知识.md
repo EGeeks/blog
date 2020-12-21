@@ -17,6 +17,10 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [【网络协议】TCP分段与IP分片](https://blog.csdn.net/ns_code/article/details/30109789)
 > [关于“TCP segment of a reassembled PDU”](https://blog.csdn.net/dog250/article/details/51809566)
 > [流重组讲解四部曲（一）- IP、TCP流重组概念理解](https://blog.csdn.net/lsl_zhulin/article/details/79299153)
+> [【TCP/IP协议】TCP中的MSS解读](https://www.cnblogs.com/zhangxian/articles/5558651.html)
+> [Windows系统下的TCP参数优化](https://blog.csdn.net/baidu_18607183/article/details/51646522)
+> [为什么没收到对端 MSS 选项，TCP 就采用 536 这个 MSS 值？](https://blog.csdn.net/chuanglan/article/details/80666086)
+> [TCP选项之MSS](https://blog.csdn.net/xiaoyu_750516366/article/details/85316123)
 
 # TCP/IP网络分层
 - ICMP是IP协议的附属协议，IP层用它来与其他主机或路由器交换错误报文和其他重要信息，但应用程序也有可能访问它，比如ping和traceroute。
@@ -163,6 +167,7 @@ TCP最多有60字节的首部，正常的长度是20字节，所以选项最多�
 Host Requirements RFC要求TCP接受在任何报文段中的一个选项（只有前面定义的一个选项，即最大报文段大小，仅在SYN报文段中出现）。它还进一步要求TCP忽略任何它不理解的选项。这就使事情变得容易，因为所有新的选项都有一个长度字段（图1 8 - 2 0）。
 假定我们正在使用窗口扩大选项，发送移位记数为S，而接收移位记数则为R。于是我们从另一端收到的每一个16bit的通告窗口将被左移 R位以获得实际的通告窗口大小。每次当我们向对方发送一个窗口通告的时候，我们将实际的 32 bit窗口大小右移S比特，然后用它来替换TCP首部中的16 bit的值。
 TCP根据接收缓存的大小自动选择移位计数。这个大小是由系统设置的，但是通常向应用进程提供了修改途径。
+MSS选项没有被设置的时候，本端就会使用536这个值，这个值的来源在于IPv4有一个最小重组缓冲区大小，其值为576字节，是IPv4的任何实现都必须保证支持的最小IP数据报大小，IPv6对应的值为1500字节。从运输层到IP层，PDU增加了IP首部，20字节，因此TCP包为556字节，再去掉首部20字节，即为最小的MSS，即536字节。
 - SACK
 标准的TCP确认机制中，如果发送方发送了0-1000序号之间的数据，接收方收到了0-100、300-1000，那么接收方只能向发送方确认101，这时发送方会重传所有101-1000之间的数据，实际上这是不必要的，因为有可能仅仅是丢了一小段而已，但是在标准的TCP确认机制中，发送方无法感知这一事情，只能重传从101开始的所有数据。
 

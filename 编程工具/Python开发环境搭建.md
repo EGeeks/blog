@@ -16,6 +16,9 @@ C:\Users\qinge\AppData\Local\Programs\Python\Python37
 安装结束有一个取消最大文件路径长度MAX_PATH为260字符的限制，我这里没有使能。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190223225352560.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)配置环境变量，
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190223231200632.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+安装时如果选择了Add Python to PATH，就不需要手动配置环境变量了，
+![34](https://img-blog.csdnimg.cn/20201220234400712.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 # 插件
 更新pip，安装flake8、yapf，pylint
 

@@ -11,8 +11,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [SecureCRT永久设置和配色方案](https://blog.csdn.net/Colorful_lights/article/details/80720761)
 > [SecureCRT 唯美配色方案](https://blog.csdn.net/hgcpkclwcx/article/details/78929737/)
 
-# SecureCRT脚本自动发送stop
-菜单`Script > Run`或`Script > Cancel`，可添加到button快捷键。
+# SecureCRT VB脚本自动发送stop
+创建`*.vbs`文件，菜单`Script > Run`或`Script > Cancel`，可添加到button快捷键。
 ```vb
 #$language = "VBScript"
 #$interface = "1.0"

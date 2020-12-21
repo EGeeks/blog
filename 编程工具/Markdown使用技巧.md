@@ -12,6 +12,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 VS Code安装插件`Markdown Preview Enhanced`，打开预览记得选择`Markdown Preview Enhanced`的按钮，默认的的预览没有右键菜单，无法支持导出PDF，右键选择`Chrome > PDF`。
 ![127](https://img-blog.csdnimg.cn/20191215180142905.png)
 20200507补充：一个免费的在线文档互转网站[Speedpdf](https://speedpdf.com/)。
+20201205补充：点击没反应
+![30](https://img-blog.csdnimg.cn/20201205030217117.png)
 # 转word
 右键选择`Pandoc`总是弹出`error: Output format needs to be specified`，下载安装Pandoc，命令行，
 ```shell
