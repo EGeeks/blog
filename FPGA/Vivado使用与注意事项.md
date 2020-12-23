@@ -4,6 +4,9 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# [Synth 8-1852] concurrent assignment to a non-net s_axis_ctrl_fifo_tvalid is not permitted
+对一个reg变量进行assign会出现这个错误。
+
 # Error while detecting SPI flash device - unrecognized JEDEC id bytes: 10, 00, 00
 错误的使用了另外一个项目的fsbl导致的。
 

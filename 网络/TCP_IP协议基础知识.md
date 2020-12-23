@@ -115,7 +115,7 @@ IGMP的校验和位置核ICMP是一样的，
 - UDP检验和覆盖UDP首部和UDP数据。回想IP首部的检验和，它只覆盖IP的首部 — 并不覆盖IP数据报中的任何数据。UDP和TCP在首部中都有覆盖它们首部和数据的检验和。 UDP的检验和是可选的，而TCP的检验和是必需的。尽管UDP检验和的基本计算方法与IP首部检验和计算方法相类似（16 bit字的二进制反码和），但是它们之间存在不同的地方。首先，UDP数据报的长度可以为奇数字节，但是检验和算法是把若干个16bit字相加。解决方法是必要时在最后增加填充字节0，这只是为了检验和的计算（也就是说，可能增加的填充字节不被传送）。其次，UDP数据报和TCP段都包含一个12字节长的伪首部，它是为了计算检验和而设置的。伪首部包含IP首部一些字段。其目的是让 UDP两次检查数据是否已经正确到达目的地（例如，IP没有接受地址不是本主机的数据报，以及IP没有把应传给另一高层的数据报传给UDP）。
 ![238](https://img-blog.csdnimg.cn/20191201161326500.PNG)
 ![239](https://img-blog.csdnimg.cn/20191201161308431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
-UDP数据报中的伪首部格式，在该图中，我们特地举了一个奇数长度的数据报例子，因而在计算检验和时需要加上填充字节。注意，UDP数据报的长度在检验和计算过程中出现两次。如果检验和的计算结果为 0，则存入的值为全 1（65535），这在二进制反码计算中是等效的。如果传送的检验和为0，说明发送端没有计算检验和。
+UDP数据报中的伪首部格式，在该图中，我们特地举了一个奇数长度的数据报例子，因而在计算检验和时需要加上填充字节。注意，UDP数据报的长度在检验和计算过程中出现两次。如果检验和的计算结果为 0，则存入的值为全 1（65535），这在二进制反码计算中是等效的。如果传送的检验和为0，说明发送端没有计算检验和。**UDP和TCP的伪首部格式是一样的**。
 ![240](https://img-blog.csdnimg.cn/20191201162015854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 ```clike
 unsigned short checksum(unsigned short *buf,int nword)

@@ -21,7 +21,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 2. BOOL bNoDelay = TRUE;
 setsockopt(skt, IPPROTO_TCP, TCP_NODELAY, (char FAR *)&bNoDelay, sizeof(BOOL));
 
-# 组播
+# 组播（又称多播）
 > [组播 IP_MULTICAST_LOOP回环在Linux和Windows的差异](https://blog.csdn.net/lucky_greenegg/article/details/84938565)
 > [Linux之UDP组播示例——双向通信](https://blog.csdn.net/qq_26600237/article/details/81036817)
 > [局域网发现之UDP组播](https://blog.csdn.net/lixin88/article/details/55209630)
@@ -36,6 +36,27 @@ setsockopt(skt, IPPROTO_TCP, TCP_NODELAY, (char FAR *)&bNoDelay, sizeof(BOOL));
 > [CentOS多网卡下 应用层无法收到组播的问题解决](https://blog.csdn.net/norsd/article/details/61196474)
 > [UDP多网卡广播问题解决方案](https://blog.csdn.net/wmx313880747/article/details/44942499)
 > [linux udp组播接收问题及原理分析](https://blog.csdn.net/rcfalcon/article/details/35221759)
+> [基于 UDP 的 组播、广播详解](https://www.cnblogs.com/schips/p/12552534.html)
+> [UDP组播的实现](https://blog.csdn.net/gua_MASS/article/details/51339096)
+> [UDP 用户数据报格式（单播+组播）](https://blog.csdn.net/u010018619/article/details/79415128)
+> [UDP 单播、广播、多播](https://www.cnblogs.com/yyy1234/p/10417383.html)
+> [UDP 单播、广播和多播](https://www.cnblogs.com/lidabo/p/5865045.html)
+
+IP 组播通信必须依赖于 IP 多播地址，在 IPv4 中它是一个 D 类 IP 地址，范围从 224.0.0.0 到 239.255.255.255，并被划分为局部链接多播地址、预留多播地址和管理权限多播地址3类：
+- 局部链接多播地址范围在 224.0.0.0~224.0.0.255，这是为路由协议和其它用途保留的地址，路由器并不转发属于此范围的IP包；
+- 预留多播地址为 224.0.1.0~238.255.255.255，可用于全球范围（如Internet）或网络协议；
+- 管理权限多播地址为 239.0.0.0~239.255.255.255，可供组织内部使用，类似于私有 IP 地址，不能用于 Internet，可限制多播范围。
+
+另外一种说法，
+- 224.0.0.0～224.0.0.255为预留的组播地址（永久组地址），地址224.0.0.0保留不做分配，其它地址供路由协议使用；
+- 224.0.1.0～224.0.1.255是公用组播地址，可以用于Internet；
+- 224.0.2.0～238.255.255.255为用户可用的组播地址（临时组地址），全网范围内有效；
+- 239.0.0.0～239.255.255.255为本地管理组播地址，仅在特定的本地范围内有效。
+
+MAC地址的第8位为0时是单播地址，为1是是组播地址，组播MAC地址通常以01:00:5e或01:00:5f开头，后23位取IP地址的后23位，24位为0。
+
+# 广播
+广播IP为该子网网段的最后8字节为255，例如192.168.1.255，端口为 80，目的MAC地址为FF:FF:FF:FF:FF:FF。
 
 ## 多路组播一路收不到或者一路发不出
 eth0 IP为192.168.5.196，eth1 IP为192.168.6.196，使用eth1收两路组播226.0.0.2:5409 226.0.0.6:5051，配置了路由route add default gw 192.168.5.254导致组播只能收到一路5051的，将路由改成route add default gw 192.168.6.254解决问题。
