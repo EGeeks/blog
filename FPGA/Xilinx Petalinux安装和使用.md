@@ -14,12 +14,19 @@ $ mkdir -p /opt/Xilinx/Petalinux/2019.2
 $ ./petalinux-v2019.2-final-installer.run /opt/Xilinx/Petalinux/2019.2
 $ sudo dpkg-reconfigure dash #选择no
 ```
-建立工程，
+建立工程，可以创建空白工程，也可以从bsp创建工程，
 ```bash
+# 空白工程
 $ petalinux-create -t project -n zynq-v2018.2 --template zynq
 $ cp ~/project/fdk/pcierc-zc706/pcierc_wrapper.hdf ./zynq-v2018.2
 $ cd zynq-v2018.2
 $ petalinux-config --get-hw-description=.
+# 从bsp创建工程
+$ petalinux-create -t project -s ./zynq-v2018.2.bsp
+```
+系统配置，可配置生成的固件这些参数，Yocto相关参数配置都在这里，
+```bash
+$ petalinux-config
 ```
 配置rootfs，
 ```bash
@@ -134,7 +141,86 @@ petalinux-build -x distclean
 #     * specified <FSBL_ELF>
 #     * specified < PMUFW_ELF > *
 #     * newly built u-boot image which is <PROJECT>/images/linux/u-boot.elf
-$ petalinux-package --boot --u-boot
+
+# 3合1
+$ petalinux-package --boot --fpga images/linux/pcierc_wrapper_gen2_x4.bit --u-boot --force
+# 2合1
+$ petalinux-package --boot --u-boot --force
+```
+配置自动登录，
+```bash
+# Select Yocto-settings > Enable debug-tweaks
+$ petalinux-config
+```
+添加自启动程序，采用`install`类型的模板，只需要把自己的应用命名为`myapp`部署到`/usr/bin`就可以了，而petalinux的`${bindir}`就代表`/usr/bin`，
+```bash
+$ petalinux-create -t apps --template install -n myfw-init --enable
+$ cat project-spec/meta-user/recipes-apps/myfw-init/myfw-init.bb
+#
+# This file is the myfw-init recipe.
+#
+
+SUMMARY = "Simple myfw-init application"
+SECTION = "PETALINUX/apps"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+
+SRC_URI = "file://myfw-init \
+	"
+
+S = "${WORKDIR}"
+
+inherit update-rc.d
+INITSCRIPT_NAME = "myfw-init"
+INITSCRIPT_PARAMS = "start 99 S ."
+
+do_install() {
+        install -d ${D}${sysconfdir}/init.d
+        install -m 0755 ${S}/myfw-init ${D}${sysconfdir}/init.d/myfw-init
+}
+FILES_${PN} += "${sysconfdir}/*"
+$ cat project-spec/meta-user/recipes-apps/myfw-init/files/myfw-init 
+#!/bin/sh
+
+DAEMON=/usr/bin/myapp
+start ()
+{
+        echo " Starting myapp"
+        start-stop-daemon -S -o --background -x $DAEMON
+}
+stop ()
+{
+        echo " Stoping myapp"
+        start-stop-daemon -K -x $DAEMON
+}
+restart()
+{
+        stop
+        start
+}
+[ -e $DAEMON ] || exit 1
+        case "$1" in
+                start)
+                        start; ;;
+                stop)
+                        stop; ;;
+                restart)
+                        restart; ;;
+                *)
+                        echo "Usage: $0 {start|stop|restart}"
+                        exit 1
+        esac
+exit $?
+```
+发布bsp，
+```bash
+$ petalinux-package --bsp -o zynq-v2018.2.bsp -p .
+$ petalinux-package --bsp -o zynq-v2018.2.bsp -p . --force
+```
+连着vivado工程一起打包，`clean`表示把vivado工程清除后再发布，减少文件体积，
+```bash
+$ petalinux-package --bsp -o zynq-v2018.2.bsp -p . --hwsource <PATH_TO_HARDWARE_PROJECT> --force
+$ petalinux-package --bsp -o zynq-v2018.2.bsp -p . --hwsource <PATH_TO_HARDWARE_PROJECT> --force --clean
 ```
 
 # rootfs配置

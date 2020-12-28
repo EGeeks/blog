@@ -17,11 +17,11 @@ Red Hat Enterprise Workstation/Server 7.2, 7.3, 7.4 (64-bit)
 CentOS 7.2, 7.3, 7.4 (64-bit)
 Ubuntu Linux 16.04.3 (64-bit)
 
-所以，如果你的电脑是linux操作系统，那么直接安装vitis和petalinux就可以了。如果你的电脑是windows操作系统，通过安装虚拟机软件，可以运行linux操作系统，在虚拟机的linux操作系统上安装petalinux，对于win10的用户还可以选择WSL/WSL2来代替虚拟机软件，常用的虚拟机软件有vmware和visualbox，我们选择vmware workstation player，这个软件对个人用户是免费的，常用功能也没有阉割。我最后的安装环境是，
+所以，如果你的电脑是linux操作系统，那么直接安装vitis和petalinux就可以了。如果你的电脑是windows操作系统，通过安装虚拟机软件，可以运行linux操作系统，在虚拟机的linux操作系统上安装petalinux，对于win10的用户还可以选择WSL/WSL2来代替虚拟机软件，常用的虚拟机软件有vmware和visualbox，我们选择vmware workstation player，[点击下载vmware workstation player](https://www.vmware.com/cn/products/workstation-player.html)，选择最新版下载即可，这个软件对个人用户是免费的，常用功能也没有阉割。linux操作系统我们使用ubuntu，版本16.04.7，[点击下载ubuntu](http://mirrors.aliyun.com/ubuntu-releases/16.04/)，选择`ubuntu-16.04.7-desktop-amd64.iso `下载，我最后的安装环境是，
 
 1. win10
 2. vmware workstation player
-3. ubuntu16.04.4
+3. ubuntu16.04.7
 4. 虚拟机配置：4核+8GB内存
 5. 200GB磁盘
 
@@ -31,14 +31,15 @@ Ubuntu Linux 16.04.3 (64-bit)
 比较简单，双击安装文件，安装即可。
 
 ## 嵌入式linux开发环境安装
-**在虚拟机上安装ubuntu**
-准备软件vmware workstation player，ubuntu16.04.6的镜像ISO文件，petalinux安装文件。
-**在虚拟机上安装petalinux软件依赖包**
+准备软件vmware workstation player，ubuntu16.04.7的镜像ISO文件，petalinux安装文件。
+**1. 在虚拟机上安装ubuntu**
+安装虚拟机和创建ubuntu虚拟机请参考博客[VMware安装和使用](https://blog.csdn.net/Zhu_Zhu_2009/article/details/80891427)。
+**2. 安装petalinux**
+首先在虚拟机上安装petalinux的依赖软件，
 ```bash
 $ sudo apt-get install tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils ssh make
 ```
-**安装petalinux**
-比如安装在路径`/opt/pkg/petalinux-v2019.2-final`，执行下面操作。
+开始安装petalinux，比如安装在路径`/opt/pkg/petalinux-v2019.2-final`，可执行下面操作，
 ```bash
 $ sudo mkdir -p /opt/pkg/petalinux-v2019.2-final
 $ sudo chmod 777 -Rf /opt

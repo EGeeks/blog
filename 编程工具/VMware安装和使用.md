@@ -9,13 +9,15 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Ubuntu 18.04 永久修改DNS的方法](https://blog.csdn.net/weixin_43640082/article/details/83859885)
 > [Ubuntu 18.04设置dns](https://www.cnblogs.com/breezey/p/9155988.html)
 
-
 # 安装
-## Windows
+安装前请在BIOS中使能处理器虚拟化支持，Intel的是VT-x，否则会出现下面的问题，
+![40](https://img-blog.csdnimg.cn/20201228220933372.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+## Windows虚拟机
 按照默认一路安装即可，配置共享文件夹，通过网上邻居添加文件夹，
 ![27](https://img-blog.csdnimg.cn/2020111323491052.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
 
-## Ubuntu
+## Ubuntu虚拟机
 文件`->`新建，选择网上下载的ISO镜像，一路默认选择，
 ![136](https://img-blog.csdnimg.cn/20190621155146526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 大小填200GB，免得以后还要扩展，
@@ -179,4 +181,8 @@ DNS=8.8.8.8
 
 # 虚拟机拷贝
 在笔记本上，我有一个130GB的虚拟机，安装petalinux的开发环境，当时我在笔记本上编译工程，然后直接通过FTP把虚拟机拷贝到台式机上使用，当我拷贝完之后，导入虚拟机，提醒我虚拟机正在使用状态，然后就无法开机了，恢复快照也有新的错误，无语了，当时拷贝过程中，我也预感会有问题，迫于百兆网交换机的速度只有8MB/s，舍不得从头拷贝。。。看来还是失策了。
+
+# 问题
+## 本地设备名已在使用中
+以前先开虚拟机，后点击文件夹就会避免这个问题，实在不行，就重启电脑。最近发现，把WMnet8禁用再启用就可以了。
 

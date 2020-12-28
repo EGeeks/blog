@@ -11,6 +11,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [ubuntu局域网apt-get源搭建](https://blog.csdn.net/toronto2016/article/details/49147167)
 > [ubuntu下安装程序的三种方法](https://www.cnblogs.com/xwdreamer/p/3623454.html)
 > [Ubuntu 清除缓存 apt-get命令参数](https://www.cnblogs.com/jiu0821/p/10760296.html)
+> [Ubuntu 镜像](https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11s0bwoN)
 
 # dpkg命令
 查看已安装的软件包`dpkg -l`，
@@ -59,7 +60,7 @@ sudo apt-get check 检查是否有损坏的依赖
 ```
 
 # 配置阿里源
-ubuntu16.04，
+阿里巴巴官方介绍的十分清楚，参考文章[Ubuntu 镜像](https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11s0bwoN)，ubuntu16.04，
 ```shell
 jj@jj-ProLiant-DL388-Gen9:~$ sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
 jj@jj-ProLiant-DL388-Gen9:~$ lsb_release -c
