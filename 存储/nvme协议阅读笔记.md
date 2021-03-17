@@ -91,6 +91,9 @@ SCT，状态码的类型，
 - C0h to FFh: Vendor Specific status codes. 
 
 多个队列同时传输时三星970pro返回的status是`8194`，`0x2002`，返回`SC`为`Invalid Command Opcode: A reserved coded value or an unsupported value in the command opcode field. `，`More`标志置1，`More (M): If set to ‘1’, there is more status information for this command as part of the Error Information log that may be retrieved with the Get Log Page command. If cleared to ‘0’, there is no additional status information for this command. Refer to section 5.14.1.1.`
+对一个盘执行flush命令返回0x4101，对于More标志为1，SCT为0， SC为0x80，属于` I/O Command Set Specific status codes;`，对应`LBA Out of Range: The command references an LBA that exceeds the size of the namespace. `，我发一个Admin，怎么返回I/O的错误码呢？首先关注VWC位，
+![395](https://img-blog.csdnimg.cn/20210122112528579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 
 # DSM-Dataset Management 
 > [NVMe SSD新功能Reservation从入门到精通](https://www.sohu.com/a/272502796_311575)

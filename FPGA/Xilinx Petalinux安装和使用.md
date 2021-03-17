@@ -8,6 +8,10 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [libgcc-xilinx和libgcc-xilinx-dev两个库是为了添加libgcc_s.so.1，来使用pthread_exit()函数](https://blog.csdn.net/songkai320/article/details/70317948)
 
 # Petalinux
+安装依赖，
+```bash
+$ sudo apt install ssh make tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils
+```
 安装，
 ```bash
 $ mkdir -p /opt/Xilinx/Petalinux/2019.2

@@ -12,12 +12,13 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > ug1144
 > [how to add or modify petalinux 2016.4 yocto kernel source or devictree source?](https://forums.xilinx.com/t5/Embedded-Linux/how-to-add-or-modify-petalinux-2016-4-yocto-kernel-source-or/m-p/742861)
 > [An example of using FILES_${PN}](https://stackoverflow.com/questions/46071039/an-example-of-using-files-pn)
+> [Vitis Platform Out-of-Date after Update HW Specification](https://forums.xilinx.com/t5/Embedded-Development-Tools/Vitis-Platform-Out-of-Date-after-Update-HW-Specification/td-p/1157212)
 
-# Windows
+# 安装
+## Windows
 Vivado打不开，Vitis闪退，通过命令行执行发现`Error: The file D:/Xilinx/Vivado/2020.1/lib/win64.o/librdi_device.dll is corrupt. Please re-install `，重新解压缩安装包安装后问题消失，文件在硬盘里放久了竟然损坏了？事事不顺，软件安了一天。
 
-# Ubuntu16.04.6
-## Vitis
+## Ubuntu16.04.6
 安装Vitis，执行，
 ```bash
 $ chmod -Rf 777 /opt
@@ -28,3 +29,17 @@ $ ./xsetup
 $ cd /opt/Xilinx/Vivado/2019.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/
 $ sudo ./install_drivers
 ```
+
+# 使用
+## 更改配色
+因为我的ubuntu18.04 gnome装了黑色主题，vitis的主题必须调整，否则字体看不到了。
+![2021-02-25 23-02-21](https://img-blog.csdnimg.cn/20210317224301848.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+## 更新xsa
+vitis没有像sdk那样自动检测hdf更新，重新生成hw，需要在项目窗口手动右键执行更新。vivado更改了一个地址，更新xsa发现vitis中地址没有更新，清除综合，重新跑一遍解决。中断在bd里面更新了，但是软件没有更新，这时候需要`Reset BSP`才可以。
+
+## platform out-of-date
+更新xsa文件后项目窗口显示out-of-date，右键执行编译可消除这个提示。
+
+## bsp配置
+打开项目的`*.spr`文件，

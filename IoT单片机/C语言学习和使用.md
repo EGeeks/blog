@@ -9,6 +9,21 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [宏定义中的#,##](https://blog.csdn.net/jiangjingui2011/article/details/6706967)
 > [关于宏##的使用注意一点](https://blog.csdn.net/lovewubo/article/details/37937455)
 > [c语言 得到结构体成员偏移](https://blog.csdn.net/whatday/article/details/105000046)
+> [C++ 结构体中含有函数时sizeof结构体大小](https://blog.csdn.net/gjtboa/article/details/50945106)
+
+# c 结构体包含函数成员 sizeof
+和类一样，如果有虚函数，则实例中多出一个虚函数列表指针，
+```c
+typedef struct st_data_head
+{
+	int16_t		fieldID=0;	
+	int16_t		fieldSize=0;
+	st_data_head()
+	{
+		memset(this, 0, sizeof(st_data_head));
+	}
+}ST_DATA_HEAD;
+```
 
 # 计算结构体成员的偏移
 3种方法，

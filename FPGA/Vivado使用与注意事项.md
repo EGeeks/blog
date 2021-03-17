@@ -4,6 +4,33 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# [DRC RTRES-2] Global clock nets are using local routing resources: Global clock nets are using local routing resources. 1 net(s) have at least one node with COST_CODE_NAME equal to BOUNCEACROSS or INTENT_CODE_NAME equal to NODE_DOUBLE, NODE_HLONG, NODE_HQUAD, NODE_SINGLE, NODE_VLONG, or NODE_VQUAD. This situation occurs when a global clock net must enter a clock region where all global clock routing resources are occupied. Check the report from report_clock_utilization to determine which clock regions are traversed by the problem net and use floorplanning or other physical constraints to ensure a maximum of 24 global clock nets occupy each clock region. The problem net(s) are system_i/clk_wiz_0/inst/clk_out1.
+因为ultrascale的xdma的时钟连接错误。
+
+# ordered port connections cannot be mixed with named port connections
+最后一个例化信号`.m_axis_mac_tvalid      (s_axis_tvalid)`后面不能有标点符号。
+```verilog
+  toe_core #(
+    .ILA_EN(0)
+    ) toe_core_i (
+...
+    .m_axis_mac_tready      (s_axis_tready),
+    .m_axis_mac_tvalid      (s_axis_tvalid)
+    );
+```
+
+# 仿真
+> [AR# 64000 Vivado 仿真器 - 了解波形数据库文件 (WDB) 和波配置文件 (WCFG)](https://china.xilinx.com/support/answers/64000.html)
+> [AR# 58880 Xilinx Simulation Solution Center - Design Assistant - Vivado Simulator - Waveform Database (.wcfg,.wdb etc).](https://china.xilinx.com/support/answers/58880.html)
+
+先点击1，后点击2，更改代码则先点击3，再点击2，就这几板斧就够用了。
+![55](https://img-blog.csdnimg.cn/2021020620000256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+保存sim的配置文件和波形，
+```bash
+save_wave_config D:/project/pcierc-zc706-axi-interconnect/tso.wcfg
+open_wave_config D:/project/pcierc-zc706-axi-interconnect/tso.wcfg
+```
+
 # [Synth 8-1852] concurrent assignment to a non-net s_axis_ctrl_fifo_tvalid is not permitted
 对一个reg变量进行assign会出现这个错误。
 
@@ -41,6 +68,7 @@ If you are not getting any error in implementation flow, its ok to ignore this.
 生成IP后，无法立刻更改IP参数配置，此时IP配置窗口的OK键是无法点击的，因为刚生成的IP正在编译。
 
 # 保存和显示波形文件
+ila的波形，
 ```bash
 write_hw_ila_data -force E:/project/vivado2015.2.1/finace/tcp_ila_data [upload_hw_ila_data hw_ila_1]
 open_hw # 等同于点击按钮Hardware Manager

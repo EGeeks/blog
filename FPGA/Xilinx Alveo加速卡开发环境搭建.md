@@ -149,7 +149,7 @@ $ sudo add-apt-repository --remove ppa:xorg-edgers/ppa
 ```
 
 # Vitis
-首先安装Vitis，参考我的博客[Xilinx Vitis Petalinux安装和使用](https://blog.csdn.net/Zhu_Zhu_2009/article/details/106443896)，注意部署目标平台与Vitis之间的兼容性，
+首先安装Vitis，参考我的博客[Xilinx Vitis 安装和使用](https://blog.csdn.net/Zhu_Zhu_2009/article/details/106443896)，注意部署目标平台与Vitis之间的兼容性，
 ![2020-10-09 22-56-32](https://img-blog.csdnimg.cn/20201009225830742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
 # 测试
 插入Alveo加速卡，可以看到卡和驱动都装上了，
@@ -349,4 +349,168 @@ INFO: == host memory bandwidth test SKIPPED
 INFO: Card[0] validated successfully.
 
 INFO: All cards validated successfully.
+$ xbutil query
+INFO: Found total 1 card(s), 1 are usable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+System Configuration
+OS name:	Linux
+Release:	5.3.0-62-generic
+Version:	#56~18.04.1-Ubuntu SMP Wed Jun 24 16:17:03 UTC 2020
+Machine:	x86_64
+Model:		H310M HD2 2.0
+CPU cores:	4
+Memory:		15962 MB
+Glibc:		2.27
+Distribution:	Ubuntu 18.04.4 LTS
+Now:		Sun Oct 18 14:32:36 2020 GMT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+XRT Information
+Version:	2.7.766
+Git Hash:	19bc791a7d9b54ecc23644649c3ea2c2ea31821c
+Git Branch:	2020.1_PU1
+Build Date:	2020-08-17 16:52:05
+XOCL:		2.7.766,19bc791a7d9b54ecc23644649c3ea2c2ea31821c
+XCLMGMT:	2.7.766,19bc791a7d9b54ecc23644649c3ea2c2ea31821c
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Shell                           FPGA                            IDCode
+xilinx_u50_gen3x16_xdma_201920_3                                0xdeadfa11
+Vendor          Device          SubDevice       SubVendor       SerNum          
+0x10ee          0x5021          0x000e          0x10ee          50121119CG4H    
+DDR size        DDR count       Clock0          Clock1          Clock2          
+0 Byte          0               300             500             450             
+PCIe            DMA chan(bidir) MIG Calibrated  P2P Enabled     OEM ID          
+GEN 3x16        2               true            N/A             0x30314144(N/A) 
+Interface UUID
+862c7020a250293e32036f19956669e5
+Logic UUID
+f465b0a3ae8c64f619bc150384ace69b
+DNA                             CPU_AFFINITY    HOST_MEM size   Max HOST_MEM    
+                                0-3             0 Byte          0 Byte          
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Temperature(C)
+PCB TOP FRONT   PCB TOP REAR    PCB BTM FRONT   VCCINT TEMP     
+28              30              N/A             35              
+FPGA TEMP       TCRIT Temp      FAN Presence    FAN Speed(RPM)  
+37              27              P               N/A             
+QSFP 0          QSFP 1          QSFP 2          QSFP 3          
+N/A             N/A             N/A             N/A             
+HBM TEMP        
+32              
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Electrical(mV|mA)
+12V PEX         12V AUX         12V PEX Current 12V AUX Current 
+12002           N/A             1180            N/A             
+3V3 PEX         3V3 AUX         DDR VPP BOTTOM  DDR VPP TOP     
+3373            N/A             N/A             N/A             
+SYS 5V5         1V2 TOP         1V8 TOP         0V85            
+4991            N/A             1802            N/A             
+MGT 0V9         12V SW          MGT VTT         1V2 BTM         
+903             N/A             1206            N/A             
+VCCINT VOL      VCCINT CURR     VCCINT IO VOL   VCC3V3 VOL      
+849             4600            850             3347            
+3V3 PEX CURR    VCCINT IO CURR  HBM1V2 VOL      VPP2V5 VOL      
+222             2200            1201            2503            
+VCC1V2 CURR     V12 I CURR      V12 AUX0 CURR   V12 AUX1 CURR   
+N/A             N/A             N/A             N/A             
+12V AUX1 VOL    VCCAUX VOL      VCCAUX PMC VOL  VCCRAM VOL      
+N/A             88386123        88386123        88386123        
+3V3 AUX CURR    
+N/A             
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Card Power(W)
+14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Firewall Last Error Status
+Level 3 : 0x2(RECS_ARREADY_MAX_WAIT)
+Error occurred on: Sun 2020-10-18 17:53:11 CST
+
+ECC Error Status
+Tag     Errors      CE Count  UE Count  CE FFA              UE FFA              
+HBM[0]  (None)      0         0         0x0                 0x0                 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Memory Status
+     Tag         Type        Temp(C)  Size    Mem Usage       BO count
+[ 0] HBM[0]      MEM_HBM     32       256 MB  0 Byte          0       
+[ 1] HBM[1]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 2] HBM[2]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 3] HBM[3]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 4] HBM[4]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 5] HBM[5]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 6] HBM[6]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 7] HBM[7]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 8] HBM[8]      **UNUSED**  32       256 MB  0 Byte          0       
+[ 9] HBM[9]      **UNUSED**  32       256 MB  0 Byte          0       
+[ a] HBM[10]     **UNUSED**  32       256 MB  0 Byte          0       
+[ b] HBM[11]     **UNUSED**  32       256 MB  0 Byte          0       
+[ c] HBM[12]     **UNUSED**  32       256 MB  0 Byte          0       
+[ d] HBM[13]     **UNUSED**  32       256 MB  0 Byte          0       
+[ e] HBM[14]     **UNUSED**  32       256 MB  0 Byte          0       
+[ f] HBM[15]     **UNUSED**  32       256 MB  0 Byte          0       
+[10] HBM[16]     **UNUSED**  32       256 MB  0 Byte          0       
+[11] HBM[17]     **UNUSED**  32       256 MB  0 Byte          0       
+[12] HBM[18]     **UNUSED**  32       256 MB  0 Byte          0       
+[13] HBM[19]     **UNUSED**  32       256 MB  0 Byte          0       
+[14] HBM[20]     **UNUSED**  32       256 MB  0 Byte          0       
+[15] HBM[21]     **UNUSED**  32       256 MB  0 Byte          0       
+[16] HBM[22]     **UNUSED**  32       256 MB  0 Byte          0       
+[17] HBM[23]     **UNUSED**  32       256 MB  0 Byte          0       
+[18] HBM[24]     **UNUSED**  32       256 MB  0 Byte          0       
+[19] HBM[25]     **UNUSED**  32       256 MB  0 Byte          0       
+[1a] HBM[26]     **UNUSED**  32       256 MB  0 Byte          0       
+[1b] HBM[27]     **UNUSED**  32       256 MB  0 Byte          0       
+[1c] HBM[28]     **UNUSED**  32       256 MB  0 Byte          0       
+[1d] HBM[29]     **UNUSED**  32       256 MB  0 Byte          0       
+[1e] HBM[30]     **UNUSED**  32       256 MB  0 Byte          0       
+[1f] HBM[31]     **UNUSED**  32       256 MB  0 Byte          0       
+[20] PLRAM[0]    **UNUSED**  N/A      0 Byte  0 Byte          0       
+[21] PLRAM[1]    **UNUSED**  N/A      0 Byte  0 Byte          0       
+[22] PLRAM[2]    **UNUSED**  N/A      0 Byte  0 Byte          0       
+[23] PLRAM[3]    **UNUSED**  N/A      0 Byte  0 Byte          0       
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DMA Transfer Metrics
+Chan[0].h2c:  1 KB
+Chan[0].c2h:  1 KB
+Chan[1].h2c:  1 KB
+Chan[1].c2h:  0 Byte
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Streams
+     Tag         Flow ID  Route ID Status   Total (B/#)     Pending (B/#)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Xclbin UUID
+f6c836fc-096d-4c95-9870-5fe5a58c2bf8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compute Unit Status
+CU[ 0]: mmult:mmult_1                   @0x1400000         (IDLE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Partition Info:
+    installation
+        installed_package_dir: /opt/xilinx/firmware/u50/gen3x16-xdma/blp
+        installed_package_name: xilinx-u50-gen3x16-xdma-blp
+        installed_package_release: 2784799
+        installed_package_version: 1
+    partition_card: u50
+    partition_family: gen3x16-xdma
+    partition_features
+        pcie
+            device_ids
+                5020
+                    role: management_pf
+                5021
+                    role: user_pf
+            extended_capabilities: enabled
+            max_link_speed: gen3x16
+            subsystem_id: 000e
+            vendor_id: 10ee
+    partition_identifiers
+        interface_uuids
+            862c7020a250293e32036f19956669e5
+                type: exposed
+        logic_uuid: f465b0a3ae8c64f619bc150384ace69b
+    partition_name: blp
+    partition_type: blp
+    partition_vendor: xilinx
+    vbnv_override: xilinx:u50:gen3x16_xdma:201920_3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INFO: xbutil query succeeded.
 ```

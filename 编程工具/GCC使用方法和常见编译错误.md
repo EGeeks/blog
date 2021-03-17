@@ -9,6 +9,25 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [gcc -E 预处理阶段做了哪些事？](https://blog.csdn.net/luoyir1997/article/details/82455058)
 > [GCC -E选项：生成预处理文件](http://c.biancheng.net/view/2375.html)
 > [Linux direct io使用](http://www.lenky.info/archives/2012/05/1660)
+> [解决 array subscript has type char 错误](https://blog.csdn.net/sjygqz/article/details/106583420)
+> [configure: error: newly created file is older than distributed files!](https://blog.csdn.net/kangear/article/details/48422677)
+
+# symbolmap: 00000001: invalid section
+```bash
+$ sudo apt install libelf-dev
+```
+
+# configure: error: newly created file is older than distributed files!
+```bash
+$ hwclock --set --date="07/24/2012 12:33:22"
+$ find . -name "*" -exec touch '{}' \;
+```
+
+# array subscript has type 'char'
+此错误警告应防止使用负数组索引。将char改为u8，或者添加编译选项` -Wno-char-subscripts`。
+
+# undefined reference to symbol 'pthread_rwlock_rdlock@@GLIBC_2.4
+添加`-lpthread`
 
 # error: expected ',' or '...' before 'new'
 移植了一个链表实现到Qt，编译报错，思考半天，是变量名`new`和c++的关键字冲突导致。

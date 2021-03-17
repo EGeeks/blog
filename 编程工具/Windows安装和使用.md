@@ -4,6 +4,10 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 命令行杀掉进程
+```bash
+taskkill /im /f nginx.exe
+```
 
 # CAJ转PDF
 speedpdf，大小限制也是2MB，干。。。

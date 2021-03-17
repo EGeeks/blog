@@ -10,6 +10,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [AR# 67871 Zynq UltraScale+ MPSoC: MicroBlaze PMU MDM is disabled by default on ES2 and higher.](https://china.xilinx.com/support/answers/67871.html)
 > [Debugging U-Boot drivers in SDK 2018.3](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/71827726/Debugging+U-Boot+drivers+in+SDK+2018.3)
 > [Debug U-boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842557/Debug+U-boot)
+> [Xilinx XSCT 调试jtag-uart , jtagterminal](https://blog.csdn.net/luodicaizi84/article/details/108417797)
 
 # tcl语法
 （1）if 判断，{}中的语句需要用[]括起来

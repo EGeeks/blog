@@ -5,6 +5,7 @@ QQ群：**852283276**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
 # 参考
+> [ubuntu 16.04 镜像下载](https://blog.csdn.net/qq_17783559/article/details/82025601)
 > [ubuntu 显示或者隐藏 grub选择菜单](http://blog.chinaunix.net/uid-26527046-id-3748986.html)
 > [sudo: /etc/sudoers is world writable 错误解决方案](https://blog.csdn.net/whatday/article/details/84784494)
 > [Ubuntu18.04（Gnome桌面）主题美化，Mac私人定制](https://blog.csdn.net/zyqblog/article/details/80152016)
@@ -20,7 +21,37 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [利用logrotate 防止linux系统日志文件过大](https://blog.csdn.net/qq_26614295/article/details/79923056)
 > [ubuntu系统日志的配置和使用](https://blog.csdn.net/brosnan2880/article/details/84295775)
 > [logrotate - 如何防止日志变得太大？](https://www.kutu66.com/ubuntu/article_161023)
+> [Ubuntu 18.04 启用 rc.local 设置开机启动](https://www.cnblogs.com/digdeep/p/9760025.html)
+> [ubuntu18创建rc.local](https://www.cnblogs.com/yunweiweb/p/12986867.html)\
+> [ubuntu 18.04 配置 rc.local](https://blog.csdn.net/a912952381/article/details/81205095)
 
+# 强制更改分辨率
+```bash
+$ cvt 2560 1440
+# 2560x1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz
+Modeline "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+$ cvt 1920 1080
+# 1920x1080 59.96 Hz (CVT 2.07M9) hsync: 67.16 kHz; pclk: 173.00 MHz
+Modeline "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+# 添加到/etc/profile
+xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode HDMI-1 "1920x1080_60.00"
+xrandr --output HDMI-1 --mode "1920x1080_60.00"
+```
+
+# rc.local
+Ubuntu18.04默认是没有rc.local文件的，需要手动启用，
+```bash
+$ ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+$ sudo echo "
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+" >> etc/systemd/system/rc-local.service
+$ sudo touch /etc/rc.local
+$ sudo chmod 755 /etc/rc.local
+$ sudo echo "#!/bin/bash" > /etc/rc.local
+```
 
 # QQ
 官网下载QQ Linux版本deb包，安装，如果版本更新后登录出现闪退情况，请删除 ~/.config/tencent-qq/#你的QQ号# 目录后重新登录，
@@ -188,4 +219,39 @@ $ sudo ubuntu-drivers autoinstall
 ```bash
 $ sudo apt install tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils memtool devmem2
 ```
+
+# 串口登录
+新建文件`/lib/systemd/system/ttyS1.service`，
+```bash
+$ sudo gedit /lib/systemd/system/ttyS1.service
+$ cat /lib/systemd/system/ttyS1.service
+[Unit]
+Description=ttyS1 Getty
+Documentation=man:agetty(8)
+ConditionPathExists=/dev/ttyS1
+After=rc-local.service
+Before=getty.target
+
+[Service]
+ExecStart=-/sbin/agetty --noclear --keep-baud ttyS1 115200,38400,9600 $TERM
+Type=idle
+Restart=always
+RestartSec=0
+UtmpIdentifier=cons
+TTYPath=/dev/ttyS1
+TTYReset=yes
+TTYVHangup=yes
+KillMode=process
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
+```
+开启服务，
+```bash
+$ sudo systemctl start ttyS1
+```
+自启动服务，
+```bash
+$ sudo systemctl enable ttyS1
+```
+![386](https://img-blog.csdnimg.cn/20201231114123983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 

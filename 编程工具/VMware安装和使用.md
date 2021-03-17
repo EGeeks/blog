@@ -8,6 +8,9 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [VMware虚拟机三种联网方式（图文详细解说）](https://blog.csdn.net/qq_28090573/article/details/78730552)
 > [Ubuntu 18.04 永久修改DNS的方法](https://blog.csdn.net/weixin_43640082/article/details/83859885)
 > [Ubuntu 18.04设置dns](https://www.cnblogs.com/breezey/p/9155988.html)
+> [VMWARE虚拟机串口添加与调试](https://www.goupteam.com/tech-expand/1259.html)
+> [VMware虚拟串口的设置和使用](https://blog.csdn.net/exbob/article/details/6313443)
+> [VMware 将虚拟磁盘多个文件合并为单个文件](https://blog.csdn.net/weixin_44303986/article/details/105047775)
 
 # 安装
 安装前请在BIOS中使能处理器虚拟化支持，Intel的是VT-x，否则会出现下面的问题，
@@ -181,6 +184,59 @@ DNS=8.8.8.8
 
 # 虚拟机拷贝
 在笔记本上，我有一个130GB的虚拟机，安装petalinux的开发环境，当时我在笔记本上编译工程，然后直接通过FTP把虚拟机拷贝到台式机上使用，当我拷贝完之后，导入虚拟机，提醒我虚拟机正在使用状态，然后就无法开机了，恢复快照也有新的错误，无语了，当时拷贝过程中，我也预感会有问题，迫于百兆网交换机的速度只有8MB/s，舍不得从头拷贝。。。看来还是失策了。
+
+# 合并虚拟机磁盘文件
+使用`C\Program Files（x86）\VMware\VMware Player\vmware-vdiskmanager.exe`。
+
+# USB配置
+默认是询问，这个很烦，每次弹出个窗口，不注意还以为电脑不识别。
+![384](https://img-blog.csdnimg.cn/20201231103832610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+# 串口配置
+给Ubuntu添加一个调试串口，关闭虚拟机，点击菜单，`虚拟机->设置`，如果没有串口，则点击添加串口，选择管道模式，
+![385](https://img-blog.csdnimg.cn/20201231104959383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+我的显示的是`串行端口 2`，经测试对应`/dev/ttyS1`，minicom和putty使用默认设置，不需要关闭流控，
+```bash                                                                                                                                           
+qe@ubuntu:~$ sudo cat /proc/tty/driver/serial
+serinfo:1.0 driver revision:
+0: uart:16550A port:000003F8 irq:4 tx:24 rx:0 CTS|DSR|CD
+1: uart:16550A port:000002F8 irq:3 tx:9 rx:0 CTS|DSR|CD
+2: uart:unknown port:000003E8 irq:4
+3: uart:unknown port:000002E8 irq:3
+4: uart:unknown port:00000000 irq:0
+5: uart:unknown port:00000000 irq:0
+6: uart:unknown port:00000000 irq:0
+7: uart:unknown port:00000000 irq:0
+8: uart:unknown port:00000000 irq:0
+9: uart:unknown port:00000000 irq:0
+10: uart:unknown port:00000000 irq:0
+11: uart:unknown port:00000000 irq:0
+12: uart:unknown port:00000000 irq:0
+13: uart:unknown port:00000000 irq:0
+14: uart:unknown port:00000000 irq:0
+15: uart:unknown port:00000000 irq:0
+16: uart:unknown port:00000000 irq:0
+17: uart:unknown port:00000000 irq:0
+18: uart:unknown port:00000000 irq:0
+19: uart:unknown port:00000000 irq:0
+20: uart:unknown port:00000000 irq:0
+21: uart:unknown port:00000000 irq:0
+22: uart:unknown port:00000000 irq:0
+23: uart:unknown port:00000000 irq:0
+24: uart:unknown port:00000000 irq:0
+25: uart:unknown port:00000000 irq:0
+26: uart:unknown port:00000000 irq:0
+27: uart:unknown port:00000000 irq:0
+28: uart:unknown port:00000000 irq:0
+29: uart:unknown port:00000000 irq:0
+30: uart:unknown port:00000000 irq:0
+31: uart:unknown port:00000000 irq:0
+qe@ubuntu:~$ dmesg | grep ttys*
+[    0.004000] console [tty0] enabled
+[    1.956527] 00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    1.979817] 00:06: ttyS1 at I/O 0x2f8 (irq = 3, base_baud = 115200) is a 16550A
+```
+
 
 # 问题
 ## 本地设备名已在使用中

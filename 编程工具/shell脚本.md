@@ -4,6 +4,14 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# sh -c
+> [sh -c的必要性](https://blog.csdn.net/bobchill/article/details/84647575)
+
+可以让bash将一个字串作为完整的命令来执行，这样就可以将sudo的影响范围扩展到整条命令。
+```bash
+$ sudo sh -c 'echo "dtoverlay=mcp2517fd" >> /boot/config.txt'
+```
+
 # find
 查找文件，
 ```bash

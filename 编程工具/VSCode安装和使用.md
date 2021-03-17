@@ -4,9 +4,9 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
-
 # 参考
 > [vscode 的tab与空格设置](https://www.cnblogs.com/xuanmanstein/p/9181592.html)
+> [用VSCode连接远程Linux服务器实时修改代码的方法](https://www.cnblogs.com/zbzhm3728/articles/13710964.html)
 
 # 安装
 ## Windows
@@ -59,7 +59,11 @@ File > Preferences > Settings
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190227212157955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 # 插件
 ## verilog
-搜索Market，安装`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`，这个下载量最大。。。
+搜索Market，安装`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`，功能比较丰富，
+Icarus Verilog - iverilog
+Vivado Logical Simulation - xvlog
+Modelsim - modelsim
+Verilator - verilator
 
 ## C/C++
 安装`C/C++`，自动推荐安装的，完成`C/C++ IntelliSense, debugging, and code browsing`功能。对于驱动开发，配置头文件检索路径，
@@ -70,3 +74,5 @@ ${workspaceFolder}/**
 /usr/src/linux-headers-5.3.0-62-generic/arch/x86/include
 ```
 
+## SSH
+通过SSH修改远程服务器上的代码，安装Remote SSH插件
