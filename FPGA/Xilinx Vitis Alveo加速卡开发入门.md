@@ -17,6 +17,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [2020.1 Vitis™ Application Acceleration Development Flow Tutorials](https://github.com/Xilinx/Vitis-Tutorials)
 > [Vitis Accel Examples' Repository](https://github.com/Xilinx/Vitis_Accel_Examples)
 > [Vitis Embedded Platform Source](https://github.com/Xilinx/Vitis_Embedded_Platform_Source)
+> [开发者分享 | Alveo加速卡上管理子系统 CMC 介绍](https://mp.weixin.qq.com/s/cNzFy_kRvvsnKO5_c4XGtg)
 
 # Vitis
 老哥现在在Ubuntu18.04上，打开Vitis，platform可以是官方的，比如Alveo或者官方开发板或者第三方开发板，也可以是自己创建的，Windows上直接双击桌面图标打开即可，

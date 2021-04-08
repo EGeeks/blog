@@ -6,6 +6,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 参考
 > [libgcc-xilinx和libgcc-xilinx-dev两个库是为了添加libgcc_s.so.1，来使用pthread_exit()函数](https://blog.csdn.net/songkai320/article/details/70317948)
+> [开发者分享 | 如何给 u-boot 的源码生成 patch 并在 Petalinux 中编译](https://mp.weixin.qq.com/s/T1Y7mQV8UmYcrj5SeP_-1Q)
 
 # Petalinux
 安装依赖，
@@ -215,6 +216,11 @@ restart()
                         exit 1
         esac
 exit $?
+```
+删除自己的应用，直接删除应用的文件夹，然后注释掉`IMAGE_INSTALL_append= " ***"`，
+```bash
+# <plnx-proj-root>/project-spec/meta-user/recipes-core/images/petalinux-image-full.bbappend
+IMAGE_INSTALL_append= " ***"
 ```
 发布bsp，
 ```bash

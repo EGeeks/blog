@@ -93,9 +93,18 @@ root@zynqmp:~# [   58.230411] random: crng init done
 [  104.707664] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000004
 [  104.707664] 
 ```
-ftp截图，
+ftp截图，这个问题在zynq平台没有出现过。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190222110327532.PNG)
-这个问题在zynq平台没有出现过。。。
+开启UHS模式，更新FSBL，`project-spec/meta-user/recipes-bsp/fsbl/fsbl_%.bbappend`，
+```bash
+YAML_COMPILER_FLAGS_append = " -DUHS_MODE_ENABLE"
+```
+设备树，
+```bash
+& sdhci1 {
+    /delete-property/ no-1-8-v;
+};
+```
 
 # 不识别SD卡
 SD卡识别不到都是因为更换了hdf没有更新fsbl的原因，但看了fsbl的源代码，没有相关代码，所以应该是hw project的系统初始化中的相关代码，更改后识别到ZC706 SD卡，

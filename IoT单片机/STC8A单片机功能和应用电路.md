@@ -6,6 +6,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 参考
 > [官网](http://www.stcmcu.com/)
+> [学习笔记之－51单片机IO口详解](https://blog.csdn.net/gjxman1314/article/details/54985734)
 
 # 功能和管脚介绍
 下面是STC8A4K64S2A12的LQFP64封装的管脚图，来自芯片手册3.1.2小节，同样还有LQFP48和LQFP32封装的，这里以LQFP64介绍，LQFP64可提供最多的IO管脚，LQFP48和LQFP32只是LQFP64的一部分。STC8A8K64S2A12相比较STC8A4K64S2A12只是单片机RAM由4K增加到8K，视项目的复杂度可兼容切换。
@@ -44,3 +45,7 @@ STC8A单片机需要提供系统电源和ADC参考电源，在不需要高精度
  ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181111144110724.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 图中左方有一个Power On的上电开关，在下载的过程中需要断电再上电，所以需要有一个自锁开关，但项目批产的过程中，不需要次开关，可通过镊子短路或者外部电源开关实现上电过程，下载电路可将P3.0，P3.1，GND三个引脚用排针引出即可。红线右侧电路不需要。
 
+# IO口准双向模式
+![110](https://img-blog.csdnimg.cn/20190621233353796.png)
+应用场景，开关按下5v，不按则悬空，需要完成的功能是，读1动作，读0不动作，这里为了能读到0，需要先对IO写0，否则是读不到0的，
+![111](https://img-blog.csdnimg.cn/20190621233639233.png)
