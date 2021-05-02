@@ -29,7 +29,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 编译即可。
 
 # 下载
-板子先保持断电状态，然后点击ISP下载，然后板子上电，会自动完成下载过程。在硬件选型中，有一个下载时是否擦除EEPROM选项，如果不想擦除保留的参数，则不勾选这个选项。
+板子先保持断电状态，然后点击ISP下载，然后板子上电，会自动完成下载过程。在硬件选型中，有一个下载时是否擦除EEPROM选项，如果不想擦除保留的参数，则不勾选这个选项。时钟频率选择要和程序匹配，否则串口波特率不对，通信乱码，
+![65](https://img-blog.csdnimg.cn/20210502234015212.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 
 # 其他
 STC的官网山寨风太浓了，开发工具也是很简单粗暴，但这么多年了，一直还有维护更新，说明人家活的还不错，至少技术人员还在一直维护，挺好。

@@ -14,6 +14,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [玩转GIT系列之【git submodule update出错提示子模组未对路径注册】](https://blog.csdn.net/LEON1741/article/details/90259836)
 > [Git修改提交的仓库地址](https://blog.csdn.net/csdn_flyyoung/article/details/87905077)
 > [git 撤销远程的上次提交（撤销远程服务器如GitHub gitlab上的提交）](https://blog.csdn.net/oLiZuoZuo12/article/details/108468552)
+> [git生成patch和打patch](https://blog.csdn.net/u013318019/article/details/114860407)
 
 # Git
 ## 安装
@@ -98,6 +99,33 @@ Use '--' to separate paths from revisions, like this:
 aj@aj-PC MINGW64 /f/xilinxlinux/shall (master)
 $ git reset --soft HEAD~1
 ```
+或者采用，
+```bash
+$ git log
+commit a2f9c9b1f6adc05a43961cecd9fdfb03b1232c84
+Author: Mr.BangBangBabe <zhuce19940828@me.com>
+Date:   Sat Apr 24 00:02:50 2021 +0800
+
+    add rs485 code for c51
+
+commit acd5a9ef5335e0733296947d06ff4e0d62e3cc68
+Author: Mr.BangBangBabe <zhuce19940828@me.com>
+Date:   Wed Apr 21 01:57:48 2021 +0800
+
+    add rs485 proc
+$ git reset --hard a2f9c9b1f6adc05a43961cecd9fdfb03b1232c84
+```
+
+## 中文乱码
+右键菜单Options设置UTF-8，执行`git config --global core.quotepath false`。
+
+## patch
+```bash
+git diff Test.java > test.patch
+git format-patch <r1>
+git apply xxx.patch # 对应git diff生成的patch
+git am 0001-limit-log-function.patch # 对应git format-patch生成的patch
+```
 
 # GitHub
 ## 新建GitHub仓库
@@ -177,12 +205,12 @@ $ git push -u origin master
 ```
 
 ## 撤销操作
-如果本地没有执行任何操作，使用，
+参考Git撤销操作，恢复本地代码，如果本地没有执行任何操作，使用，
 ```bash
 $ git revert HEAD
 $ git push origin master
 ```
-$ 如果本地已经reset了，并重新commit了，使用，
+如果本地已经reset了，并重新commit了，使用，
 ```bash
 git push origin master -f
 ```

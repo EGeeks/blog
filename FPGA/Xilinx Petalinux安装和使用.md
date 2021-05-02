@@ -264,6 +264,7 @@ Filesystem Packages  → misc  → tcf-agent
 ```shell
 cantools pciutils microcom
 ```
+
 # 增加软件包
 petalinux采用yocto来制作跟文件系统，比如iperf3，在petalinux rootfs的menuconfig中是没有的，需要手动配置，iperf3 recipe位置在，
 ```shell
@@ -368,3 +369,31 @@ help:
 	@echo "  install                install built objects to rootfs host copy"
 
 ```
+
+# 问题
+2019.1报错，
+```bash
+| In file included from /home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/include/configs/platform-top.h:2,
+|                  from include/config.h:5,
+|                  from /home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/include/common.h:17,
+|                  from /home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/lib/asm-offsets.c:14:
+| /home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/include/configs/platform-auto.h:151:2: error: expected identifier or '(' before string constant
+|   "bootenv=uEnv.txt\0" \
+|   ^~~~~~~~~~~~~~~~~~~~
+| make[2]: *** [/home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/./Kbuild:44: lib/asm-offsets.s] Error 1
+| make[1]: *** [/home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/Makefile:1579: prepare0] Error 2
+| make[1]: *** Waiting for unfinished jobs....
+```
+发现是151行有一个空行，删掉即可，
+```c
+#define CONFIG_EXTRA_ENV_SETTINGS \
+	SERIAL_MULTI \ 
+	CONSOLE_ARG \ 
+	DFU_ALT_INFO_RAM \ 
+	DFU_ALT_INFO_MMC \ 
+	PSSERIAL0 \ 
+	"nc=setenv stdout nc;setenv stdin nc;\0" \ 
+	
+	"bootenv=uEnv.txt\0" \ 
+```
+
