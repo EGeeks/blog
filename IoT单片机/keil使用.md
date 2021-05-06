@@ -7,6 +7,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 参考
 > [Keil工程下各个后缀名文件的作用](https://blog.csdn.net/ningxuanyu5854/article/details/78438005)
 > [Keil uVision4 for ARM 下增加支持C51,C5x](https://blog.csdn.net/skertone/article/details/7046447)
+> [keil中文乱码解决和个人习惯字体设置](https://blog.csdn.net/qlexcel/article/details/54929072)
+> [在KEIL中选一款你爱的字体](https://blog.csdn.net/yhdawn/article/details/60466490)
 
 # Keil中文
 Keil下用ASCII也能打中文字符，后面用VSCode编辑再上传到Github之后，全乱码了，

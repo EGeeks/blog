@@ -9,6 +9,9 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [python 文件读写操作](https://www.cnblogs.com/zyber/p/9578240.html)
 > [Python读写文件](https://www.cnblogs.com/qq931399960/p/11118659.html)
 > [Python If ... Else](https://www.w3school.com.cn/python/python_conditions.asp)
+> [python笔记12-python多线程之事件（Event)](https://www.cnblogs.com/yoyoketang/p/8341972.html)
+> [Python queue模块详解](https://www.cnblogs.com/lincappu/p/12890761.html)
+> [Python 将终端 Terminal 或者控制台的输出结果输出至 log 文件 以文件形式保存](https://blog.csdn.net/weixin_42255190/article/details/105368185)
 
 # 文件操作
 python文件对象提供了三个“读”方法： read()、readline() 和 readlines()。每种方法可以接受一个变量以限制每次读取的数据量。
@@ -73,5 +76,36 @@ if i >= len(cars):
     print("error index")
 else:
     print(cars[i])
+```
+
+# 事件
+set(): 将标志设为True，并通知所有处于等待阻塞状态的线程恢复运行状态。
+clear(): 将标志设为False。
+wait(timeout): 如果标志为True将立即返回，否则阻塞线程至等待阻塞状态，等待其他线程调用set()。
+isSet(): 获取内置标志状态，返回True或False。
+```python
+event = threading.Event()
+```
+
+# 队列
+当队列中没有数据元素时，取出队列中的数据会引发 queue.Empty 异常，主要是不正当使用 get() 和 get_nowait() 引起的。
+
+# 日志
+```python
+import sys
+
+class Logger(object):
+    def __init__(self, logFile ="Default.log"):
+        self.terminal = sys.stdout
+        self.log = open(logFile,'a')
+ 
+    def write(self,message):
+        self.terminal.write(message)
+        self.log.write(message)
+ 
+    def flush(self):
+        pass
+ 
+sys.stdout = Logger("log.log") 
 ```
 
