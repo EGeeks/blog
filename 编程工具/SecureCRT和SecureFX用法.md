@@ -11,6 +11,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [SecureCRT永久设置和配色方案](https://blog.csdn.net/Colorful_lights/article/details/80720761)
 > [SecureCRT 唯美配色方案](https://blog.csdn.net/hgcpkclwcx/article/details/78929737/)
 
+如果报缺msvcp100.dll，安装`.NET framework 4.0`，不要网上乱下，都是全家桶。
+
 # SecureCRT VB脚本自动发送stop
 创建`*.vbs`文件，菜单`Script > Run`或`Script > Cancel`，可添加到button快捷键。
 ```vb
@@ -51,6 +53,7 @@ End Sub
 # SecureCRT显示乱码
 设置Session Options，设置字符集UTF-8，显示汉字。
 ![43](https://img-blog.csdnimg.cn/20181226171825276.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 # SecureCRT ubuntu telnet第一次自动登录失败
 取消这个选项，
 ![46](https://img-blog.csdnimg.cn/20181228103501385.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
@@ -69,6 +72,7 @@ Mac系统里，每行结尾是“<换行>”，即"\n"
 ## 下载
 u-boot下执行`loadx`，linux下执行`lrz -beyX <file name>`，点击菜单`Send Xmodem`，
 ![281](https://img-blog.csdnimg.cn/20200222164117902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 ## 上传
 linux执行`lsz -beyX <file name>`，点击菜单`Receive Xmodem`。
 
@@ -78,6 +82,7 @@ linux执行`lsz -beyX <file name>`，点击菜单`Receive Xmodem`。
 ## 配置X/Y/Zmodem默认工作目录
 可以设置Upload和Download目录，不用每次都费事点很多次文件夹。
 ![326](https://img-blog.csdnimg.cn/20200805191818503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 # SecureCRT TFTP server
 SecureCRT集成了TFTP服务端，不需要单独安装软件了，很方便，参考`配置X/Y/Zmodem默认工作目录`图。
 

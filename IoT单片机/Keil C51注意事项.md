@@ -22,6 +22,9 @@ Program Size: data=21.6 xdata=3413 code=58108
 Program Size: data=21.6 xdata=2763 const=0 code=43872
 ```
 
+# 节省代码空间
+![66](https://img-blog.csdnimg.cn/20210510004204444.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
 
 # 数据类型
 在keil C51或者iar for c8051编译器下，

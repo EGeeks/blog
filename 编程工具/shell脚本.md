@@ -4,6 +4,43 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 获取IP MAC
+> [如何在 Linux 上检查网卡信息](https://zhuanlan.zhihu.com/p/137332390)
+
+```bash
+qe@ubuntu:~$ sudo ./mac.sh 
+ens33:
+Permanent address: 00:0c:29:9e:f5:ce
+
+ubuntu
+-------------
+ens33:
+192.168.91.150/24
+00:0c:29:9e:f5:ce
+	Speed: 1000Mb/s
+qe@ubuntu:~$ 
+qe@ubuntu:~$ 
+qe@ubuntu:~$ cat mac.sh 
+#!/bin/sh
+ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
+do
+  echo $output:
+  ethtool -P $output
+done
+
+echo ""
+
+hostname
+echo "-------------"
+for iname in $(ip a |awk '/state UP/{print $2}')
+do
+  echo "$iname"
+  ip a | grep -A2 $iname | awk '/inet/{print $2}'
+  ip a | grep -A2 $iname | awk '/link/{print $2}'
+  ethtool $iname |grep "Speed:"
+done
+```
+
 # sh -c
 > [sh -c的必要性](https://blog.csdn.net/bobchill/article/details/84647575)
 

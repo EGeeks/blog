@@ -10,3 +10,11 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 16进制编辑
 [下载HexEditor](https://github.com/chcg/NPP_HexEdit/releases)插件`HexEditor.dll`，放入目录`C:\Program Files\Notepad++\plugins\HexEditor`，
 ![312](https://img-blog.csdnimg.cn/20200604200421812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+# TAB设置
+替换TAB为空格和设置TAB宽度，
+![409](https://img-blog.csdnimg.cn/202105111051432.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+# 大小写转换
+可以通过快捷键迅速完成大小写转换，
+![410](https://img-blog.csdnimg.cn/20210515164251571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)

@@ -4,6 +4,9 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 仿真波形窗口Block Design中的IP信号位宽不对
+更改IP参数后，需要重新Generate Output Products。
+
 # [DRC RTRES-2] Global clock nets are using local routing resources: Global clock nets are using local routing resources. 1 net(s) have at least one node with COST_CODE_NAME equal to BOUNCEACROSS or INTENT_CODE_NAME equal to NODE_DOUBLE, NODE_HLONG, NODE_HQUAD, NODE_SINGLE, NODE_VLONG, or NODE_VQUAD. This situation occurs when a global clock net must enter a clock region where all global clock routing resources are occupied. Check the report from report_clock_utilization to determine which clock regions are traversed by the problem net and use floorplanning or other physical constraints to ensure a maximum of 24 global clock nets occupy each clock region. The problem net(s) are system_i/clk_wiz_0/inst/clk_out1.
 因为ultrascale的xdma的时钟连接错误。
 
