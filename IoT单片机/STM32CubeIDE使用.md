@@ -9,6 +9,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [第一个STM32CubeIDE项目](https://blog.csdn.net/weixin_44481398/article/details/93293881)
 > [STM32CubeIDE使用记录](https://blog.csdn.net/weixin_42415539/article/details/90795405)
 > [STM32CubeIDE使用笔记（03）：使用ST-LINK调试程序](https://blog.csdn.net/Naisu_kun/article/details/97393547)
+> [实战经验 | STM32CubeIDE 实用技巧之 ld 链接文件](https://mp.weixin.qq.com/s/jJX3UHRMEIBVnoP36vOziQ)
 
 # 安装
 STM32终于出了这样一款工具，之前也出过开源的eclipse开发工具，但这次帮你打包了一站式的，更方便了，[点击此处下载](https://my.st.com/content/my_st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-ides/stm32cubeide.license=1568939618757.product=STM32CubeIDE-Win.version=1.0.2.html)，下载需要有自己的账号，官网下载，安装一路默认就可以了。

@@ -45,6 +45,11 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Yocto i.MX6 (TQIMX6) (03) : wifi网卡的相关工具wpa_supplicant与dhcp](https://blog.csdn.net/sy373466062/article/details/50374683)
 > [Yocto tips (11): Yocto如何往最终的rootfs中添加软件](https://blog.csdn.net/sy373466062/article/details/50370323)
 > [802.11 a/b/g/n/ac 是什么以及它们有什么区别](https://blog.csdn.net/briant_ccj/article/details/50487303)
+> [Linux博通43xx系列网卡驱动](https://blog.csdn.net/weixin_41827342/article/details/103620566)
+> [安装centOS 7双系统（四）——解决Broadcom博通BCM 43xx无线网卡驱动问题](https://blog.csdn.net/maxwell2ic/article/details/51997132)
+> [博通的网卡linux驱动,Centos&Redhat下bcm43142博通无线网卡linux驱动](https://blog.csdn.net/weixin_35778830/article/details/116673652)
+> [linux内核makefile概览](https://www.cnblogs.com/downey-blog/p/10486863.html)
+> [linux – 内核模块编译和KBUILD_NOPEDANTIC](http://www.voidcn.com/article/p-ahcfwnkz-bts.html)
 
 # WIFI6
 > [Wi-Fi6无线网卡横评，killer 1650 vs Intel AX210 vs Intel AX200](https://www.jianshu.com/p/5f4044487c4e)
@@ -265,6 +270,284 @@ xilinx-pcie 50000000.pciex: Slave Completer Abort
 xilinx-pcie 50000000.pciex: Slave Completer Abort
 Bus error
 Unhandled fault: imprecise external abort (0x1406) at 0x80c80004
+```
+
+## 性能
+5G双频，性能，
+```bash
+# iperf3 -c 192.168.43.30
+Connecting to host 192.168.43.30, port 5201
+[  5] local 192.168.43.1 port 53816 connected to 192.168.43.30 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  22.3 MBytes   187 Mbits/sec    0    421 KBytes       
+[  5]   1.00-2.00   sec  27.2 MBytes   228 Mbits/sec    0    444 KBytes       
+[  5]   2.00-3.00   sec  25.7 MBytes   216 Mbits/sec    0    465 KBytes       
+[  5]   3.00-4.00   sec  27.6 MBytes   231 Mbits/sec    0    465 KBytes       
+[  5]   4.00-5.00   sec  27.2 MBytes   229 Mbits/sec    0    495 KBytes       
+[  5]   5.00-6.00   sec  27.2 MBytes   228 Mbits/sec    0    495 KBytes       
+[  5]   6.00-7.00   sec  26.9 MBytes   226 Mbits/sec    0    495 KBytes       
+[  5]   7.00-8.00   sec  26.8 MBytes   225 Mbits/sec    0    495 KBytes       
+[  5]   8.00-9.00   sec  25.1 MBytes   211 Mbits/sec    0    547 KBytes       
+[  5]   9.00-10.00  sec  27.2 MBytes   228 Mbits/sec    0    583 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   263 MBytes   221 Mbits/sec    0             sender
+[  5]   0.00-10.00  sec   262 MBytes   220 Mbits/sec                  receiver
+
+iperf Done.
+# iperf3 -s
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 192.168.43.30, port 42696
+[  5] local 192.168.43.1 port 5201 connected to 192.168.43.30 port 42698
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  36.1 MBytes   303 Mbits/sec                  
+[  5]   1.00-2.00   sec  38.0 MBytes   319 Mbits/sec                  
+[  5]   2.00-3.00   sec  38.9 MBytes   326 Mbits/sec                  
+[  5]   3.00-4.00   sec  36.8 MBytes   309 Mbits/sec                  
+[  5]   4.00-5.00   sec  37.2 MBytes   312 Mbits/sec                  
+[  5]   5.00-5.03   sec  1.30 MBytes   332 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.03   sec   188 MBytes   314 Mbits/sec                  receiver
+```
+
+# WPEB-265AXI(BT)
+采用博通的`bcm43752a2`，支持WIFI6E，采用厂商给的bcmdhd驱动，不是从博通官网下载的，目前只调通了2.4g，性能如下，
+```bash
+# iperf3 -s
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 192.168.43.30, port 43592
+[  5] local 192.168.43.1 port 5201 connected to 192.168.43.30 port 43594
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  9.39 MBytes  78.7 Mbits/sec                  
+[  5]   1.00-2.00   sec  11.3 MBytes  94.5 Mbits/sec                  
+[  5]   2.00-3.00   sec  13.4 MBytes   113 Mbits/sec                  
+[  5]   3.00-4.00   sec  14.5 MBytes   122 Mbits/sec                  
+[  5]   4.00-5.00   sec  14.2 MBytes   119 Mbits/sec                  
+[  5]   5.00-5.12   sec  1.54 MBytes   109 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.12   sec  64.3 MBytes   105 Mbits/sec                  receiver
+# iperf3 -c 192.168.43.30
+Connecting to host 192.168.43.30, port 5201
+[  5] local 192.168.43.1 port 42240 connected to 192.168.43.30 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  9.02 MBytes  75.6 Mbits/sec    0    486 KBytes       
+[  5]   1.00-2.00   sec  13.6 MBytes   114 Mbits/sec   33    706 KBytes       
+[  5]   2.00-3.00   sec  10.4 MBytes  87.4 Mbits/sec    0    803 KBytes       
+[  5]   3.00-4.00   sec  15.2 MBytes   127 Mbits/sec    0    875 KBytes       
+[  5]   4.00-5.00   sec  16.2 MBytes   136 Mbits/sec    0    928 KBytes       
+[  5]   5.00-6.00   sec  15.3 MBytes   129 Mbits/sec    0    962 KBytes       
+[  5]   6.00-7.00   sec  14.1 MBytes   118 Mbits/sec    2    700 KBytes       
+[  5]   7.00-8.00   sec  16.3 MBytes   137 Mbits/sec    0    754 KBytes       
+[  5]   8.00-9.00   sec  18.8 MBytes   158 Mbits/sec    0    792 KBytes       
+[  5]   9.00-10.00  sec  16.8 MBytes   141 Mbits/sec    0    814 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   146 MBytes   122 Mbits/sec   35             sender
+[  5]   0.00-10.00  sec   144 MBytes   121 Mbits/sec                  receiver
+
+iperf Done.
+```
+驱动加载信息，尝试搜索频段，失败，802.11ac初始化失败，
+```bash
+# dmesg | grep dhd
+[dhd] dhd_module_init: in Dongle Host Driver, version 100.10.545.16_S8 (r826445-20201221-1)
+[dhd] ======== dhd_wlan_init_plat_data ========
+[dhd] dhd_wlan_init_gpio: WL_REG_ON=-1
+[dhd] dhd_wifi_platform_load: Enter
+[dhd] dhdpcie_pci_probe : no mutex held. set lock
+[dhd] PCI_PROBE:  bus 1, slot 0,vendor 14E4, device 449D(good PCI location)
+[dhd] dhdpcie_init: found adapter info 'DHD generic adapter'
+[dhd] Disable CTO
+[dhd] ******** Perform FLR ********
+[dhd] read_config: reg=0x88 read val=0xb080
+[dhd] read_config: reg=0x88 read val=0x8080
+[dhd] ******** FLR Succedeed ********
+[dhd] DHD: dongle ram size is set to 1310720(orig 1310720) at 0x170000
+[dhd] dhd_conf_set_chiprev : chip=0xaae8, chiprev=2
+[dhd] dhd_pktid_map_init:2095: pktid_audit init succeeded 1025
+[dhd] dhd_pktid_map_init:2095: pktid_audit init succeeded 1025
+[dhd] dhd_pktid_map_init:2095: pktid_audit init succeeded 36865
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] dhd_attach(): thread:dhd_watchdog_thread:3f1 started
+[dhd] dhd_deferred_work_init: work queue initialized
+[dhd] dhd_tcpack_suppress_set: TCP ACK Suppress mode 0 -> mode 3
+[dhd] dhd_cpumasks_init CPU masks primary(big)=0x0 secondary(little)=0xfe
+[dhd] dhdpcie_bus_attach: making DHD_BUS_DOWN
+[dhd] dhdpcie_init: rc_dev from dev->bus->self (10ee:7124) is (ptrval)
+[dhd] dhdpcie_access_cap: PCI Cap(0x1e) not supported.
+[dhd] dhd_bus_is_rc_ep_l1ss_capable RC is not l1ss capable
+[dhd] dhdpcie_init: rc_ep_aspm_cap: 1 rc_ep_l1ss_cap: 0
+[dhd] dhdpcie_request_irq: MSI enabled
+[dhd] dhd_bus_download_firmware: firmware path=/lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin, nvram path=/lib/firmware/bcmdhd/nvram_ap6275p.txt
+[dhd] dhdpcie_dump_resource: BAR0(VA): 0x(ptrval), BAR0(PA): 0x40400000, SIZE: 32768
+[dhd] dhdpcie_dump_resource: BAR1(VA): 0x(ptrval), BAR1(PA): 0x40000000, SIZE: 4194304
+[dhd] dhd_conf_read_config : Ignore config file /lib/firmware/bcmdhd/config.txt
+[dhd] dhd_conf_set_path_params : Final fw_path=/lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin
+[dhd] dhd_conf_set_path_params : Final nv_path=/lib/firmware/bcmdhd/nvram_ap6275p.txt
+[dhd] dhd_conf_set_path_params : Final clm_path=/lib/firmware/bcmdhd/clm_bcm43752a2_pcie_ag.blob
+[dhd] dhd_conf_set_path_params : Final conf_path=/lib/firmware/bcmdhd/config.txt
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin (818176 bytes) open success
+[dhd] dhdpcie_download_code_file: dhd_tcm_test_enable 0
+[dhd] dhdpcie_download_code_file: download firmware /lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin (818176 bytes) open success
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/nvram_ap6275p.txt (8576 bytes) open success
+[dhd] dhdpcie_download_nvram: dhd_get_download_buffer len 8576
+[dhd] NVRAM version:  AP12275_PB33_PB18_PR33_PR18_NVRAM_V1.3_20210113_FCC
+[dhd] dhdpcie_download_nvram: process_nvram_vars len 5948
+[dhd] dhdpcie_bus_write_vars: Download, Upload and compare of NVRAM succeeded.
+[dhd] dhd_bus_aer_config: Configure AER registers for EP
+[dhd] dhd_bus_aer_config: Configure AER registers for RC
+[dhd] dhdpcie_access_cap: PCI Cap(0x01) not supported.
+[dhd] dhd_bus_aer_config: Invalid RC's PCIE_ADV_CORR_ERR_MASK: 0xffffffff
+[dhd] dhdpcie_readshared: PCIe shared addr (0x001ef954) read took 56383 usec before dongle is ready
+[dhd] H2D DMA WR INDX : array size 172 = 4 * 43
+[dhd] D2H DMA RD INDX : array size 16 = 4 * 4
+[dhd] D2H DMA WR INDX : array size 16 = 4 * 4
+[dhd] H2D DMA RD INDX : array size 172 = 4 * 43
+[dhd] dhdpcie_readshared: max H2D queues 40
+[dhd] FW supports debug buf dest ? N 
+[dhd] dhd_bus_start: Initializing 43 h2drings
+[dhd] dhd_prot_init:3207: h2d_max_txpost = 512
+[dhd] dhd_prot_init:3216: MAX_RXBUFPOST = 511
+[dhd] ENABLING DW:0
+[dhd] IDMA inited
+[dhd] Enable hostcap: EXTD TXS in txcpl
+[dhd] dhd_prot_d2h_sync_init(): D2H sync mechanism is NONE 
+[dhd] dhd_bus_hostready : Read PCICMD Reg: 0x00100546
+[dhd] dhd_bus_dump_dar_registers: dar_clk_ctrl(0xa08:0x1030040) dar_pwr_ctrl(0xa0c:0x30000) dar_intstat(0xa10:0x0)
+[dhd] dhd_bus_dump_dar_registers: dar_errlog(0xa60:0x0) dar_erraddr(0xa64:0x0) dar_pcie_mbint(0xa68:0x0)
+[dhd] dhd_bus_hostready: Ring Hostready:1
+[dhd] Attach flowrings pool for 40 rings
+[dhd] iDMA enabled PCIEControl = 00000001
+[dhd] dhd_send_d2h_ringcreate ringid: 3 idx: 46 max_h2d: 43
+[dhd] info buffer post after ring create
+[dhd] dhd_sync_with_dongle: GET_REVINFO device 0x449d, vendor 0x14e4, chipnum 0xaae8
+[dhd] dhd_sync_with_dongle: RxBuf Post : 2048
+[dhd] dhd_tcpack_suppress_set 382: already set to 3
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/clm_bcm43752a2_pcie_ag.blob (28865 bytes) open success
+[dhd] dhd_check_current_clm_data: ----- This FW is not included CLM data -----
+[dhd] dhd_check_current_clm_data: ----- This FW is included CLM data -----
+[dhd] Firmware up: op_mode=0x0002, MAC=00:0e:8e:9c:9f:28
+[dhd] dhd_preinit_ioctls: event_log_max_sets: 26 ret: 0
+[dhd]   Driver: 100.10.545.16_S8 (r826445-20201221-1)
+[dhd] dhd_pno_init: Support Android Location Service
+[dhd] dhd_ecounter_autoconfig Ecounter autoconfig in FW not supported
+[dhd] [INIT] logset:8 is preserve/chatty
+[dhd] [INIT] logset:10 is preserve/chatty
+[dhd] dhd_conf_set_country : set country XZ, revision 0
+[dhd] dhd_rx_frame: net device is NOT registered. drop event packet
+[dhd] dhd_conf_set_country : Country code: XZ (XZ/0)
+[dhd] Dongle Host Driver, version 100.10.545.16_S8 (r826445-20201221-1)
+[dhd] Register interface [wlan0]  MAC: 00:0e:8e:9c:9f:28
+[dhd] dhd_tcpack_suppress_set: TCP ACK Suppress mode 3 -> mode 0
+[dhd] dhd_bus_devreset: == Power OFF ==
+[dhd] dhd_bus_devreset: making dhdpub up FALSE
+[dhd] dhd_bus_stop: making DHD_BUS_DOWN
+[dhd] dhd_dpc_kill: tasklet disabled
+[dhd] dhd_bus_devreset: making DHD_BUS_DOWN
+[dhd] dhd_bus_devreset:  WLAN OFF Done
+[dhd] wifi_platform_set_power = 0, delay: 0 msec
+[dhd] ======== PULL WL_REG_ON(-1) LOW! ========
+[dhd] dhdpcie_pci_probe : the lock is released.
+[dhd] dhd_module_init: Exit err=0
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] CFG80211-ERROR) wl_cfg80211_netdev_notifier_call : wdev null. Do nothing
+[dhd] dhd_open: Enter wlan0
+[dhd] dhd_open : no mutex held. set lock
+[dhd] 
+[dhd-wlan0] wl_android_wifi_on : in g_wifi_on=0
+[dhd] wifi_platform_set_power = 1, delay: 200 msec
+[dhd] ======== PULL WL_REG_ON(-1) HIGH! ========
+[dhd] dhd_bus_devreset: == Power ON ==
+[dhd] Disable CTO
+[dhd] DHD: dongle ram size is set to 1310720(orig 1310720) at 0x170000
+[dhd] dhdpcie_request_irq: MSI enabled
+[dhd] dhd_bus_download_firmware: firmware path=/lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin, nvram path=/lib/firmware/bcmdhd/nvram_ap6275p.txt
+[dhd] dhdpcie_dump_resource: BAR0(VA): 0x(ptrval), BAR0(PA): 0x40400000, SIZE: 32768
+[dhd] dhdpcie_dump_resource: BAR1(VA): 0x(ptrval), BAR1(PA): 0x40000000, SIZE: 4194304
+[dhd] dhd_conf_read_config : Ignore config file /lib/firmware/bcmdhd/config.txt
+[dhd] dhd_conf_set_path_params : Final fw_path=/lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin
+[dhd] dhd_conf_set_path_params : Final nv_path=/lib/firmware/bcmdhd/nvram_ap6275p.txt
+[dhd] dhd_conf_set_path_params : Final clm_path=/lib/firmware/bcmdhd/clm_bcm43752a2_pcie_ag.blob
+[dhd] dhd_conf_set_path_params : Final conf_path=/lib/firmware/bcmdhd/config.txt
+[dhd] dhdpcie_download_code_file: dhd_tcm_test_enable 0
+[dhd] dhdpcie_download_code_file: download firmware /lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/fw_bcm43752a2_pcie_ag_apsta.bin (818176 bytes) open success
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/nvram_ap6275p.txt (8576 bytes) open success
+[dhd] dhdpcie_download_nvram: dhd_get_download_buffer len 8576
+[dhd] NVRAM version:  AP12275_PB33_PB18_PR33_PR18_NVRAM_V1.3_20210113_FCC
+[dhd] dhdpcie_download_nvram: process_nvram_vars len 5948
+[dhd] dhdpcie_bus_write_vars: Download, Upload and compare of NVRAM succeeded.
+[dhd] dhd_bus_aer_config: Configure AER registers for EP
+[dhd] dhd_bus_aer_config: Configure AER registers for RC
+[dhd] dhdpcie_access_cap: PCI Cap(0x01) not supported.
+[dhd] dhd_bus_aer_config: Invalid RC's PCIE_ADV_CORR_ERR_MASK: 0xffffffff
+[dhd] dhdpcie_readshared: PCIe shared addr (0x001ef954) read took 56383 usec before dongle is ready
+[dhd] H2D DMA WR INDX : array size 172 = 4 * 43
+[dhd] D2H DMA RD INDX : array size 16 = 4 * 4
+[dhd] D2H DMA WR INDX : array size 16 = 4 * 4
+[dhd] H2D DMA RD INDX : array size 172 = 4 * 43
+[dhd] dhdpcie_readshared: max H2D queues 40
+[dhd] FW supports debug buf dest ? N 
+[dhd] dhd_bus_start: Initializing 43 h2drings
+[dhd] dhd_prot_init:3207: h2d_max_txpost = 512
+[dhd] dhd_prot_init:3216: MAX_RXBUFPOST = 511
+[dhd] ENABLING DW:0
+[dhd] IDMA inited
+[dhd] Enable hostcap: EXTD TXS in txcpl
+[dhd] dhd_prot_d2h_sync_init(): D2H sync mechanism is NONE 
+[dhd] dhd_bus_hostready : Read PCICMD Reg: 0x00100546
+[dhd] dhd_bus_dump_dar_registers: dar_clk_ctrl(0xa08:0x1030040) dar_pwr_ctrl(0xa0c:0x30000) dar_intstat(0xa10:0x0)
+[dhd] dhd_bus_dump_dar_registers: dar_errlog(0xa60:0x0) dar_erraddr(0xa64:0x0) dar_pcie_mbint(0xa68:0x0)
+[dhd] dhd_bus_hostready: Ring Hostready:2
+[dhd] iDMA enabled PCIEControl = 00000001
+[dhd] dhd_send_d2h_ringcreate ringid: 3 idx: 46 max_h2d: 43
+[dhd] info buffer post after ring create
+[dhd] dhd_sync_with_dongle: GET_REVINFO device 0x449d, vendor 0x14e4, chipnum 0xaae8
+[dhd] dhd_sync_with_dongle: RxBuf Post : 2048
+[dhd] dhd_tcpack_suppress_set: TCP ACK Suppress mode 0 -> mode 3
+[dhd] dhd_os_open_image1: /lib/firmware/bcmdhd/clm_bcm43752a2_pcie_ag.blob (28865 bytes) open success
+[dhd] dhd_check_current_clm_data: ----- This FW is not included CLM data -----
+[dhd] dhd_check_current_clm_data: ----- This FW is included CLM data -----
+[dhd] Firmware up: op_mode=0x0002, MAC=00:0e:8e:9c:9f:28
+[dhd] dhd_preinit_ioctls: event_log_max_sets: 26 ret: 0
+[dhd]   Driver: 100.10.545.16_S8 (r826445-20201221-1)
+[dhd] dhd_pno_init: Support Android Location Service
+[dhd] dhd_ecounter_autoconfig Ecounter autoconfig in FW not supported
+[dhd] [INIT] logset:8 is preserve/chatty
+[dhd] [INIT] logset:10 is preserve/chatty
+[dhd] dhd_conf_set_country : set country XZ, revision 0
+[dhd] dhd_rx_frame: net device is NOT registered. drop event packet
+[dhd] dhd_conf_set_country : Country code: XZ (XZ/0)
+[dhd] dhd_bus_devreset: WLAN Power On Done
+[dhd-wlan0] wl_android_wifi_on : Success
+[dhd] dhd_open : the lock is released.
+[dhd] dhd_open: Exit wlan0 ret=0
+[dhd] [wlan0] tx queue started
+[dhd-wlan0] wl_cfg80211_add_del_bss : wl bss 2 bssidx:0
+[dhd-wlan0] wl_run_escan : LEGACY_SCAN sync ID: 0, bssidx: 0
+[dhd] CFG80211-ERROR) wl_run_escan :  Escan set error (-4)
+[dhd] CFG80211-ERROR) wl_run_escan : scan error (-4)
+[dhd] CFG80211-ERROR) wl_cfg80211_scan : scan error (-11)
+[dhd-wlan0] wl_cfg80211_add_del_bss : wl bss 3 bssidx:0
+[dhd-wlan0] wl_run_escan : LEGACY_SCAN sync ID: 1, bssidx: 0
+[dhd] CFG80211-ERROR) wl_run_escan :  Escan set error (-4)
+[dhd] CFG80211-ERROR) wl_run_escan : scan error (-4)
+[dhd] CFG80211-ERROR) wl_cfg80211_scan : scan error (-11)
+[dhd-wlan0] wl_cfg80211_add_del_bss : wl bss 2 bssidx:0
+[dhd-wlan0] wl_cfg80211_del_station : Disconnect STA : ff:ff:ff:ff:ff:ff scb_val.val 3
+[dhd-wlan0] wl_cfg80211_add_del_bss : wl bss 3 bssidx:0
 ```
 
 # intel 7265AC

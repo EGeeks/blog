@@ -7,6 +7,11 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 参考
 > [vscode 的tab与空格设置](https://www.cnblogs.com/xuanmanstein/p/9181592.html)
 > [用VSCode连接远程Linux服务器实时修改代码的方法](https://www.cnblogs.com/zbzhm3728/articles/13710964.html)
+> [VsCode SFTP插件详细使用介绍](https://blog.csdn.net/iamlujingtao/article/details/102501845)
+> [工具篇-vscode sftp代码同步](https://zhuanlan.zhihu.com/p/73218983)
+> [win10下vscode配置sftp](https://www.cnblogs.com/raind/p/8975978.html)
+> [vscode设置ssh进行远程编辑](https://blog.csdn.net/sqlquan/article/details/111918019)
+> [玩转VSCode插件之Remote-SSH](https://www.cnblogs.com/liyufeia/p/11405779.html)
 
 # 安装
 ## Windows
@@ -75,4 +80,36 @@ ${workspaceFolder}/**
 ```
 
 ## SSH
-通过SSH修改远程服务器上的代码，安装Remote SSH插件
+通过SSH修改远程服务器上的代码，安装Remote SSH插件，`Settings > Extensions`，设置config file路径，`C:\Users\qe\.ssh`，按`ctrl+shift+p`，搜索`SFTP:Config`，配置，
+
+## SFTP
+搜索安装SFTP，按`ctrl+shift+p`，搜索`SFTP:Config`，配置，
+```bash
+{
+    "name": "Ubuntu16.04 VM",
+    "host": "192.168.91.150",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "qe",
+    "password": "qe",
+    "remotePath": "/home/qe/fdk_develop/package/hw",
+    "uploadOnSave": true,
+    "ignore": [
+        "**/.vscode/**",
+        "**/.git/**",
+        "**/obj/**",
+        "**/lib/**",
+        "**/*.o",
+        "**/*.a",
+        "**/*static*"
+    ],
+    "watcher": {
+        "files": "*",
+        "autoUpload": false,
+        "autoDelete": false
+    }
+}
+```
+![411](https://img-blog.csdnimg.cn/20210526171922854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+

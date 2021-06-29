@@ -25,6 +25,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [USB3.0 HDMI输入方案之FT601Q](https://my.oschina.net/msxbo/blog/3106017)
 > [米联客(MSXBO)USB3.0 FT600/FT601/FT602测试图集](https://my.oschina.net/msxbo/blog/3108619)
 > [米联客(MSXBO)USB3.0 UVC摄像头实现基于FT602Q芯片方案](https://my.oschina.net/msxbo/blog/3106273)
+> [【工程师分享】MPSoC设计中USB Phy的复位信号](https://mp.weixin.qq.com/s/0tmqhz0CvclyFltH1s2_lg)
 
 # 介绍
 zynqmp上用的是synopsis的ip，dwc3。

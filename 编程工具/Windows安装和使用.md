@@ -4,6 +4,12 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 设置IP DNS
+DHCP模式不支持一个网卡配多个IP，配置固定IP，
+![69](https://img-blog.csdnimg.cn/20210527235021400.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+![68](https://img-blog.csdnimg.cn/20210527235010567.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+
+
 # 命令行杀掉进程
 ```bash
 taskkill /im /f nginx.exe
@@ -13,7 +19,7 @@ taskkill /im /f nginx.exe
 speedpdf，大小限制也是2MB，干。。。
 
 # XP Chrome 您的时钟快了
-安装KB931125补丁，rootsupd.exe，一闪而过就安装好了。
+安装KB931125补丁，方法：双击rootsupd.exe，一闪而过就安装好了。
 
 # pci内存控制器和sm总线控制器驱动安装
 参考[Win7装机时PCI简易通讯控制器叹号处理](https://blog.csdn.net/salutlu/article/details/18142853),选择系统设备，Intel即可。

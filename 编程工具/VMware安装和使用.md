@@ -237,8 +237,32 @@ qe@ubuntu:~$ dmesg | grep ttys*
 [    1.979817] 00:06: ttyS1 at I/O 0x2f8 (irq = 3, base_baud = 115200) is a 16550A
 ```
 
+# 找不到Windows共享文件夹
+以前是自动出现在`/mnt/hgfs`下的，共享是已经成功了的，
+```bash
+$ vmware-hgfsclient 
+D
+```
+下面关闭虚拟机重启，确保安装虚拟时的ISO文件不再占用CD/DVD光驱，点击菜单，
+![43](https://img-blog.csdnimg.cn/20210101233100527.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+这是会挂载一个光驱，把光驱中的文件拷贝到本地，
+![44](https://img-blog.csdnimg.cn/20210101233441463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+执行命令，`vmware-install.pl`一路回车默认安装，安装完重启一下，
+```bash
+$ tar -zxvf VMwareTools-10.3.21-14772444.tar.gz 
+$ cd vmware-tools-distrib/
+$ sudo apt remove --purge open-vm-tools
+$ sudo ./vmware-install.pl
+```
 
 # 问题
 ## 本地设备名已在使用中
-以前先开虚拟机，后点击文件夹就会避免这个问题，实在不行，就重启电脑。最近发现，把WMnet8禁用再启用就可以了。
+1. 以前先开虚拟机，后点击文件夹就会避免这个问题。
+2. 实在不行，就重启电脑。
+3. 最近发现，把WMnet8禁用再启用就可以了。
+4. 后发现，先用Ubuntu ping一下宿主机就可以了，注意不是vmnet1/vmnet8这两个网卡的IP。
+
+# 主机ping不通虚拟机
+关闭虚拟机防火墙，
+![70](https://img-blog.csdnimg.cn/20210629221418319.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 

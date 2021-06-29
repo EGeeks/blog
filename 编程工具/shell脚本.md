@@ -4,6 +4,11 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# 自动给命令输入
+```bash
+echo "123456" | <cmd>
+```
+
 # 获取IP MAC
 > [如何在 Linux 上检查网卡信息](https://zhuanlan.zhihu.com/p/137332390)
 

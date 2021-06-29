@@ -15,6 +15,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Git修改提交的仓库地址](https://blog.csdn.net/csdn_flyyoung/article/details/87905077)
 > [git 撤销远程的上次提交（撤销远程服务器如GitHub gitlab上的提交）](https://blog.csdn.net/oLiZuoZuo12/article/details/108468552)
 > [git生成patch和打patch](https://blog.csdn.net/u013318019/article/details/114860407)
+> [git出现Your branch and 'origin/master' have diverged解决方法](https://www.cnblogs.com/changzz/p/10956034.html)
 
 # Git
 ## 安装
@@ -87,7 +88,7 @@ a81f4b3 HEAD@{7}: pull: Fast-forward
 343eabb HEAD@{13}: clone: from git@github.com:zhuzhu2009/shall.git
 
 aj@aj-PC MINGW64 /f/xilinxlinux/shall (master)
-$ git reset -soft HEAD-1
+$ git reset --soft HEAD-1
 error: did you mean `--soft` (with two dashes ?)
 
 aj@aj-PC MINGW64 /f/xilinxlinux/shall (master)
@@ -115,6 +116,24 @@ Date:   Wed Apr 21 01:57:48 2021 +0800
     add rs485 proc
 $ git reset --hard a2f9c9b1f6adc05a43961cecd9fdfb03b1232c84
 ```
+拉取操作的时候出现，
+```bash
+$ git pull -f
+remote: Enumerating objects: 84, done.
+remote: Counting objects: 100% (83/83), done.
+remote: Compressing objects: 100% (49/49), done.
+remote: Total 49 (delta 43), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (49/49), done.
+From gitee.com:qingermaker/eih
+ + 54ef954...9fb45c7 master     -> origin/master  (forced update)
+error: Your local changes to the following files would be overwritten by merg
+        src_disp/main.c
+Please commit your changes or stash them before you merge.
+Aborting
+$ git fetch origin
+$ git reset --hard origin/master
+HEAD is now at 9fb45c7 update adc code for LCD_LED
+```
 
 ## 中文乱码
 右键菜单Options设置UTF-8，执行`git config --global core.quotepath false`。
@@ -122,7 +141,7 @@ $ git reset --hard a2f9c9b1f6adc05a43961cecd9fdfb03b1232c84
 ## patch
 ```bash
 git diff Test.java > test.patch
-git format-patch <r1>
+git format-patch <commit tag>
 git apply xxx.patch # 对应git diff生成的patch
 git am 0001-limit-log-function.patch # 对应git format-patch生成的patch
 ```

@@ -10,6 +10,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [USB-C(USB Type-C)规范的简单介绍和分析](https://blog.csdn.net/u010538116/article/details/80420632)
 > [意法半导体STM32G0生态系统扩展功能支持通用微控制器将USB-C用作标准接口](https://www.st.com/content/st_com/zh/about/media-center/press-item.html/n4139.html)
 > AN4775
+
 # 特点
 - 外形纤薄，可翻转拔插方向：正反随便插
 - USB Power Delivery提供100W电力

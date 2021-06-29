@@ -7,6 +7,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 参考
 > [libgcc-xilinx和libgcc-xilinx-dev两个库是为了添加libgcc_s.so.1，来使用pthread_exit()函数](https://blog.csdn.net/songkai320/article/details/70317948)
 > [开发者分享 | 如何给 u-boot 的源码生成 patch 并在 Petalinux 中编译](https://mp.weixin.qq.com/s/T1Y7mQV8UmYcrj5SeP_-1Q)
+> [【工程师分享】在Petalinux编译多个源文件的Linux内核模块，以及扩展Makefile功能](http://xilinx.eetrend.com/content/2021/100062316.html)
 
 # Petalinux
 安装依赖，
@@ -138,6 +139,15 @@ petalinux-build卡住在source bitbake很久都没动，执行一下clean才能�
 ```bash
 petalinux-build -x distclean
 ```
+添加驱动，删除驱动除了删除模块目录之外，您还必须从`<plnx-proj-root>/project-spec/meta-user/recipes-core/images/petalinux-image.bbappend`中删除行：`IMAGE_INSTALL_append= "mymodule"`。删除目录但保留`petalinux-image-full.bbappend`中的上述程序行将出错。
+```bash
+$ petalinux-create -t modules --name broadcom-wl --enableINFO: Create modules: broadcom-wl
+```
+编译，
+```bash
+$ petalinux-build
+$ petalinux-build -c broadcom-wl
+```
 创建BOOT.BIN，
 ```bash
 # $ petalinux-package --boot --fsbl <FSBL_ELF> --fpga <BITSTREAM> --u-boot --pmufw <PMUFW_ELF>
@@ -254,13 +264,12 @@ Filesystem Packages  → base  → usbutils
 Filesystem Packages  → base  → i2c-tools
 Filesystem Packages  → net  → netcat
 Filesystem Packages  → console  → network  → ethtool
-
 ```
-关闭
+关闭，
 ```shell
 Filesystem Packages  → misc  → tcf-agent 
 ```
-默认已有
+默认已有，
 ```shell
 cantools pciutils microcom
 ```
