@@ -11,6 +11,14 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Linux direct io使用](http://www.lenky.info/archives/2012/05/1660)
 > [解决 array subscript has type char 错误](https://blog.csdn.net/sjygqz/article/details/106583420)
 > [configure: error: newly created file is older than distributed files!](https://blog.csdn.net/kangear/article/details/48422677)
+> [Linux Dynamic System Table Usage](https://mp.weixin.qq.com/s/6fcwFtVS6C52m5-mYGyQGw)
+
+# -E
+在dlopen场景中，它是从dymamic symbol table中查找该符号是否存在，以便后续进行调用。默认情况下，如果主程序中的全局函数并未被其他调用，是不会导出到dynamic symbol table中的。如果在so文件使用了该symbol，那么在dlopen时会报错。一旦遇到报错，一个是查看下是否在LD Library path中，另外一个是查看dymamic symbol table，是否存在。
+```bash
+$ objdump -T  <file> | grep "symbol"
+```
+如果是so文件要调用主程序symbol，而该symbol没有被导出，那么就需要用-E来更改默认行为，把所有全局符号表导出到dynamic symbol table中。如果LD，那么直接-E放到ldflags中。如果是GCC，那么采用-Wl,-E方式增加到CFLAGS中。
 
 # symbolmap: 00000001: invalid section
 ```bash

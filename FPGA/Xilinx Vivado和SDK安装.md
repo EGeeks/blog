@@ -16,13 +16,12 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 方法
 以vivado2015.2.1为例，先安装vivado2015.2，再安装vivado2015.2.1更新包，选下面两个都可以，看需求，
-![160](https://img-blog.csdnimg.cn/20190726212422185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
-选上sdk，按需选择，
-![161](https://img-blog.csdnimg.cn/2019072621251276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
-添加license，
+![160](https://img-blog.csdnimg.cn/20190726212422185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)选上sdk，按需选择，
+![161](https://img-blog.csdnimg.cn/2019072621251276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)添加license，
 ![162](https://img-blog.csdnimg.cn/20190726212605999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)安装完后卸载烦人的xic，xilinx information center，
 ![159](https://img-blog.csdnimg.cn/2019072621265123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 # 设置多线程
+编译时弹出的对话框可以选择线程数。
 -----------------------------------Place Route
 Windows默认----------------------2 2
 Linux默认---------------------------4 4
@@ -47,3 +46,58 @@ Vivado无法扫描到FPGA，设备管理器中显示Xilinx Platform Cable USB Fi
 - 换了个i3-9100F的无法安装ubuntu16.04.6，换了最新的ubuntu20.04，安装vivado2018.2，卡在`Generating installed devices list`，换了ubuntu18.04，可以安装vivado2018.2，总是闪屏，更新显卡驱动，终于稳定了。
 - 更改ubuntu的dash为bash
 
+命令行安装，
+```bash
+# ./xsetup -b ConfigGen
+Running in batch mode...
+Copyright (c) 1986-2021 Xilinx, Inc.  All rights reserved.
+
+INFO : Log file location - /root/.Xilinx/xinstall/xinstall_1627208663081.log
+Select a Product from the list:
+1. Vitis
+2. Vivado
+3. On-Premises Install for Cloud Deployments
+4. BootGen
+5. Lab Edition
+6. Hardware Server
+7. Documentation Navigator (Standalone)
+
+Please choose: 2
+
+INFO : Config file available at /root/.Xilinx/install_config.txt. Please use -c <filename> to point to this install configuration.
+# 修改安装路径 /opt/Xilinx
+# vi /root/.Xilinx/install_config.txt 
+# ./xsetup -a XilinxEULA,3rdPartyEULA,WebTalkTerms -b Install -c /root/.Xilinx/install_config.txt 
+```
+安装下载器驱动，
+```bash
+$ cd /opt/Xilinx/Vivado/2020.1/data/xicom/cable_drivers/lin64/install_script/install_drivers/
+$ ./install_drivers 
+$ sudo reboot
+```
+安装hw_server，
+```bash
+# ./xsetup -b ConfigGen
+Running in batch mode...
+Copyright (c) 1986-2021 Xilinx, Inc.  All rights reserved.
+
+INFO : Log file location - /root/.Xilinx/xinstall/xinstall_1627207983309.log
+Select a Product from the list:
+1. Vitis
+2. Vivado
+3. On-Premises Install for Cloud Deployments
+4. BootGen
+5. Lab Edition
+6. Hardware Server
+7. Documentation Navigator (Standalone)
+
+Please choose: 6
+
+INFO : Config file available at /root/.Xilinx/install_config.txt. Please use -c <filename> to point to this install configuration.
+# 修改安装路径 /opt/Xilinx
+# vi /root/.Xilinx/install_config.txt 
+# ./xsetup -a XilinxEULA,3rdPartyEULA,WebTalkTerms -b Install -c /root/.Xilinx/install_config.txt 
+```
+
+## WARN : com.xilinx.installer.utils.o:? - Could not load native code
+我在Windows下解压，在ubuntu中安装失败，copy到ubuntu中再解压安装就可以了。

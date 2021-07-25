@@ -27,6 +27,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [如何实现Linux下的U盘（USB Mass Storage）驱动](https://blog.csdn.net/mao0514/article/details/24996553)
 > [Zynq Linux USB Driver Customization](https://forums.xilinx.com/t5/Embedded-Linux/Zynq-Linux-USB-Driver-Customization/td-p/239478)
 > [Linux/DRA77P: ULPI USB interface](http://e2e.ti.com/support/processors/f/791/p/788993/2920361)
+> [ZYNQ基础----裸机USB的使用](https://blog.csdn.net/qq_41332806/article/details/111935399)
 
 # 介绍
 zynq上用的是chipidea的ip，ULPI 接口要求输入保持时间为1ns，TI TUSB1210 PHY 的最低 CTO 并未规定，但报告的最低 CTO 为 100 ps，无法满足 Zynq-7000 的要求（`AR# 53450`）。

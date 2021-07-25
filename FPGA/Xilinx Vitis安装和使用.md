@@ -13,6 +13,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [how to add or modify petalinux 2016.4 yocto kernel source or devictree source?](https://forums.xilinx.com/t5/Embedded-Linux/how-to-add-or-modify-petalinux-2016-4-yocto-kernel-source-or/m-p/742861)
 > [An example of using FILES_${PN}](https://stackoverflow.com/questions/46071039/an-example-of-using-files-pn)
 > [Vitis Platform Out-of-Date after Update HW Specification](https://forums.xilinx.com/t5/Embedded-Development-Tools/Vitis-Platform-Out-of-Date-after-Update-HW-Specification/td-p/1157212)
+> [如何使用 Git 在 Vitis IDE 中进行版本控制](https://mp.weixin.qq.com/s/aZKljCfXsZlK53EMzmGUeg)
 
 # 安装
 ## Windows
@@ -28,6 +29,41 @@ $ ./xsetup
 ```bash
 $ cd /opt/Xilinx/Vivado/2019.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/
 $ sudo ./install_drivers
+```
+命令行安装，
+```bash
+# ./xsetup -b ConfigGen
+Running in batch mode...
+Copyright (c) 1986-2021 Xilinx, Inc.  All rights reserved.
+
+INFO : Log file location - /root/.Xilinx/xinstall/xinstall_1627208663081.log
+Select a Product from the list:
+1. Vitis
+2. Vivado
+3. On-Premises Install for Cloud Deployments
+4. BootGen
+5. Lab Edition
+6. Hardware Server
+7. Documentation Navigator (Standalone)
+
+Please choose: 1
+
+INFO : Config file available at /root/.Xilinx/install_config.txt. Please use -c <filename> to point to this install configuration.
+# 修改安装路径 /opt/Xilinx
+# vi /root/.Xilinx/install_config.txt 
+# ./xsetup -a XilinxEULA,3rdPartyEULA,WebTalkTerms -b Install -c /root/.Xilinx/install_config.txt 
+Running in batch mode...
+Copyright (c) 1986-2021 Xilinx, Inc.  All rights reserved.
+
+INFO : Log file location - /root/.Xilinx/xinstall/xinstall_1627208737680.log
+INFO : Installing Edition: Vitis Unified Software Platform
+INFO : Installation directory is /opt/Xilinx
+
+Installing files, 99% completed. (Done)                         
+It took 35 minutes to install files.
+
+INFO : Log file is copied to : /opt/Xilinx/.xinstall/Vitis_2020.1/xinstall.log
+INFO : Installation completed successfully.For the platforms: please visit xilinx.com and review the "Getting Started Guide" UG1301
 ```
 
 # 使用
