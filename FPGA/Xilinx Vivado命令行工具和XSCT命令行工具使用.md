@@ -7,6 +7,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 参考
 > ug894-vivado-tcl-scripting.pdf
 > ug835-vivado-tcl-commands.pdf
+> [Programming PL in ZCU102 via FPGA Manager with BIN loaded over FTP](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/69107837/Programming+PL+in+ZCU102+via+FPGA+Manager+with+BIN+loaded+over+FTP)
+> [TCL script to auto-generate a jtag boot script based on HDF file for Zynq Ultrascale](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/84444479/TCL+script+to+auto-generate+a+jtag+boot+script+based+on+HDF+file+for+Zynq+Ultrascale)
 
 # Vivado
 TCL约束报错，

@@ -6,3 +6,9 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # Vivado HLS 2019.2导出的IP在Vivado中例化丢失管脚
 Vivado HLS 2019.2有bug，导出某些ip的时候（有些IP是对的），对应的`component.xml`丢失管脚，其实`.v/.vhd`的文件是有这个管脚的，导致在Vivado中综合报错，你可以手动更改`component.xml`文件。2018.2的版本没有这个问题。
+
+# 使用HLS IP报错ERROR: [Synth 8-439] module ‘*_frmbuf_rd_0_0_v_frmbuf_rd’ not found
+```tcl
+foreach ip_in_proj [get_ips] {compile_c [get_ips $ip_in_proj]}
+```
+
