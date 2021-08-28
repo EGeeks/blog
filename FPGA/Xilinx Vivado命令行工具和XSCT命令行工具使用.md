@@ -407,22 +407,109 @@ INFO: To connect to this hw_server instance use url: TCP:localhost.localdomain:3
 把2020.1的hw_server搞到服务器上，从GUI操作对应的tcl命令，
 ```bash
 open_hw_manager
-connect_hw_server -url 172.20.77.109:3121 -allow_non_jtag
-INFO: [Labtools 27-2285] Connecting to hw_server url TCP:172.20.77.109:3121
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2020.1/data/ip'.
+connect_hw_server -allow_non_jtag 
+# connect_hw_server -url localhost:3121 -allow_non_jtag
+# connect_hw_server -url 172.20.77.109:3121 -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2020.1
+  **** Build date : May 27 2020 at 20:33:44
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+
 INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
-INFO: [Labtools 27-3414] Connected to existing cs_server.
-current_hw_target [get_hw_targets */xilinx_tcf/Xilinx/2130069AF03KA]
-set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Xilinx/2130069AF03KA]
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+****** Xilinx cs_server v2020.1.0
+  **** Build date : May 14 2020-09:10:29
+    ** Copyright 2017-2020 Xilinx, Inc. All Rights Reserved.
+
+
+
 open_hw_target
-INFO: [Labtoolstcl 44-466] Opening hw_target 172.20.77.109:3121/xilinx_tcf/Xilinx/2130069AF03KA
-set_property PROGRAM.FILE {/home/qe/project/vivado/2020.1/corundum/fpga/mqnic/AU200/fpga_10g/fpga/fpga.runs/impl_1/fpga.bit} [get_hw_devices xcu200_0]
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/2130069AF04JA
 current_hw_device [get_hw_devices xcu200_0]
 refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcu200_0] 0]
-INFO: [Labtools 27-2302] Device xcu200 (JTAG device index = 0) is programmed with a design that has 2 JTAG AXI core(s).
-set_property PROBES.FILE {} [get_hw_devices xcu200_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xcu200_0]
-set_property PROGRAM.FILE {/home/qe/project/vivado/2020.1/corundum/fpga/mqnic/AU200/fpga_10g/fpga/fpga.runs/impl_1/fpga.bit} [get_hw_devices xcu200_0]
+INFO: [Labtools 27-2302] Device xcu200 (JTAG device index = 0) is programmed with a design that has 2 ILA core(s).
+set_property PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+set_property FULL_PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+set_property PROGRAM.FILE {/root/download.bit} [get_hw_devices xcu200_0]
 program_hw_devices [get_hw_devices xcu200_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 8414.184 ; gain = 0.000 ; free physical = 57721 ; free virtual = 92510
+refresh_hw_device [lindex [get_hw_devices xcu200_0] 0]
+close_hw_manager
+```
+ 提取出脚本备用，
+```bash
+$ vim download.tcl
+$ cat download.tcl 
+open_hw_manager
+connect_hw_server -allow_non_jtag
+current_hw_target [lindex [get_hw_targets] 0]
+set_property PARAM.FREQUENCY 15000000 [lindex [get_hw_targets] 0]
+open_hw_target
+current_hw_device [get_hw_devices xcu200_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcu200_0] 0]
+set_property PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+set_property FULL_PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+set_property PROGRAM.FILE {/root/download.bit} [get_hw_devices xcu200_0]
+program_hw_devices [get_hw_devices xcu200_0]
+close_hw_manager
+
+$ chmod +x download.tcl 
+$ vim prog_au200.sh
+$ cat prog_au200.sh 
+#!/bin/sh
+
+source /opt/Xilinx/Vivado/2020.1/settings64.sh
+echo "exit
+" | vivado -mode tcl -source download.tcl
+
+$ chmod +x prog_au200.sh 
+$ ./prog_au200.sh 
+
+****** Vivado v2020.1 (64-bit)
+  **** SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source download.tcl
+# open_hw_manager
+# connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3414] Connected to existing cs_server.
+# current_hw_target [lindex [get_hw_targets] 0]
+# set_property PARAM.FREQUENCY 15000000 [lindex [get_hw_targets] 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/2130069AF04JA
+# current_hw_device [get_hw_devices xcu200_0]
+# refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcu200_0] 0]
+INFO: [Labtools 27-2302] Device xcu200 (JTAG device index = 0) is programmed with a design that has 2 ILA core(s).
+# set_property PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+# set_property FULL_PROBES.FILE {/root/system_wrapper.ltx} [get_hw_devices xcu200_0]
+# set_property PROGRAM.FILE {/root/download.bit} [get_hw_devices xcu200_0]
+# program_hw_devices [get_hw_devices xcu200_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 2943.668 ; gain = 9.004 ; free physical = 56181 ; free virtual = 90974
+# close_hw_manager
+****** Webtalk v2020.1 (64-bit)
+  **** SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source /root/.Xil/Vivado-31363-localhost.localdomain/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Fri Aug 13 21:23:51 2021...
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 13 21:23:51 2021...
 ```
 
 # XSCT
@@ -490,4 +577,34 @@ xsct% con
 ```
 如果Zynq reboot重新加载了bit，就需要关掉重新打开jtagterminal，
 ![383](https://img-blog.csdnimg.cn/20201228162336917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
+更新elf固件脚本，
+```bash
+$ exec updatemem -force -meminfo /media/qe/SN550/project/au200/au200.runs/impl_1/system_wrapper.mmi -bit /media/qe/SN550/project/au200/au200.runs/impl_1/system_wrapper.bit -data /media/qe/SN550/project/vitis/mppr/Debug/mppr.elf -proc system_i/microblaze_0 -out /media/qe/SN550/project/au200/au200.runs/impl_1/temp1.bit 
+$ exec updatemem -force -meminfo /media/qe/SN550/project/au200/au200.runs/impl_1/system_wrapper.mmi -bit /media/qe/SN550/project/au200/au200.runs/impl_1/temp1.bit -data /media/qe/SN550/project/au200/au200.srcs/sources_1/bd/system/ip/system_cms_subsystem_0_0/fw/cms.elf -proc system_i/cms_subsystem_0/inst/shell_cmc_subsystem/inst/microblaze_cmc -out /media/qe/SN550/project/au200/au200.runs/impl_1/download.bit 
+$ exec rm /media/qe/SN550/project/au200/au200.runs/impl_1/temp1.bit 
+```
+或，这个验证不行，本身我的2021.1出bug了，` Associate ELF Files`UI操作失败，
+```bash
+get_files *.elf
+/media/qe/SN550/project/au200/au200.srcs/sources_1/bd/system/ip/system_microblaze_0_0/data/mb_bootloop_le.elf /media/qe/SN550/project/au200/au200.srcs/sources_1/bd/system/ip/system_cms_subsystem_0_0/bd_1/ip/ip_23/data/mb_bootloop_le.elf /media/qe/SN550/project/au200/au200.srcs/sources_1/bd/system/ip/system_cms_subsystem_0_0/fw/cms.elf /media/qe/SN550/project/vitis/mppr/Debug/mppr.elf
+
+set_property SCOPED_TO_CELLS microblaze_0 [get_files *mppr.elf]
+set_property SCOPED_TO_REF system [get_files *mppr.elf]
+report_property [get_files *mppr.elf]
+Property                Type     Read-only  Value
+CLASS                   string   true       file
+CORE_CONTAINER          string   true       
+FILE_TYPE               enum     false      ELF
+IS_AVAILABLE            bool     true       1
+IS_ENABLED              bool     false      1
+IS_GENERATED            bool     true       0
+NAME                    string   true       /media/qe/SN550/project/vitis/mppr/Debug/mppr.elf
+NEEDS_REFRESH           bool     true       0
+PATH_MODE               enum     false      RelativeFirst
+SCOPED_TO_CELLS         string*  false      microblaze_0
+SCOPED_TO_REF           string   false      system
+USED_IN                 string*  false      implementation
+USED_IN_IMPLEMENTATION  bool     false      1
+USED_IN_SIMULATION      bool     false      0
+```
 
