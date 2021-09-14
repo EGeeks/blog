@@ -24,6 +24,27 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Ubuntu 18.04 启用 rc.local 设置开机启动](https://www.cnblogs.com/digdeep/p/9760025.html)
 > [ubuntu18创建rc.local](https://www.cnblogs.com/yunweiweb/p/12986867.html)\
 > [ubuntu 18.04 配置 rc.local](https://blog.csdn.net/a912952381/article/details/81205095)
+> [解决Ubuntu 20.04挂载NTFS分区不能写入（只读权限）的问题](https://blog.csdn.net/wwlswj/article/details/106479600)
+
+# 配置代理
+配置代理，
+```bash
+$ export http_proxy=http://192.168.1.60:3333
+$ export https_proxy=http://192.168.1.60:3333
+$ sudo -E apt update
+$ export http_proxy=http://110.110.1.70:1080
+$ export https_proxy=http://110.110.1.70:1080
+$ sudo -E apt update
+```
+
+# 终端快捷键
+ctrl+alt+t打开一个terminal
+ctrl+shift+t打开多个标签
+在多个标签中切换
+alt+1 alt+2 alt+3…….
+ctrl + pageUp
+ctrl + pageDown.
+ctrl+ d关闭terminal
 
 # 强制更改分辨率
 ```bash
@@ -120,6 +141,8 @@ $ reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeI
 在Linux下执行，
 ```bash
 $ mount -t ntfs-3g -o remove_hiberfile /dev/sda4 ./win10
+# or，然后umount，重新挂载
+$ sudo ntfsfix /dev/nvme0n1p1
 ```
 
 # 换源
@@ -145,7 +168,8 @@ $ rm Material-Black-Pistachio_1.8.6.zip
 ```bash
 $ sudo add-apt-repository ppa:wireshark-dev/stable
 $ sudo apt update
-$ sudo apt-get install wireshark
+$ sudo apt install wireshark
+$ sudo apt install unity-gtk3-module
 # 在ubuntu18.04上会自动执行dpkg-reconfigure，不需要在执行一边了
 $ sudo dpkg-reconfigure wireshark-common
 # 由于您已允许非超级用户捕获数据包，因此必须将用户添加到wireshark组。 使用usermod命令将您自己添加到wirehark组

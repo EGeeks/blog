@@ -10,6 +10,10 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [TCP socket如何清空发送缓冲区](https://bbs.csdn.net/topics/30018461)
 > [socket怎样随时刷新缓冲区的内容！！！](https://bbs.csdn.net/topics/30018461)
 > [socket UDP广播的发送和接收示例](https://blog.csdn.net/mao0514/article/details/89203203)
+> [关于UDP接收icmp端口不可达(port unreachable)](http://blog.chinaunix.net/uid-28458801-id-4990181.html)
+
+# UDP服务器回复端口不可达
+ECONNREFUSED是ICMP返回的。
 
 # SO_LINGER SO_REUSEADDR SO_REUSEPORT
 1. 设置 l_onoff为0，则该选项关闭，l_linger的值被忽略，等于内核缺省情况，close调用会立即返回给调用者，如果可能将会传输任何未发送的数据；
@@ -21,7 +25,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 2. BOOL bNoDelay = TRUE;
 setsockopt(skt, IPPROTO_TCP, TCP_NODELAY, (char FAR *)&bNoDelay, sizeof(BOOL));
 
-# 组播（又称多播）
+# 组播（多播）
 > [组播 IP_MULTICAST_LOOP回环在Linux和Windows的差异](https://blog.csdn.net/lucky_greenegg/article/details/84938565)
 > [Linux之UDP组播示例——双向通信](https://blog.csdn.net/qq_26600237/article/details/81036817)
 > [局域网发现之UDP组播](https://blog.csdn.net/lixin88/article/details/55209630)

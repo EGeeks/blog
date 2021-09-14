@@ -6,6 +6,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 
 # 参考
 > [VS2012 ddk驱动编译与虚拟机联机调试设置（vs调试驱动）](https://blog.csdn.net/mao0514/article/details/90603510)
+> [用USB 3.0 + WinDbg开始你的调试之旅](https://mp.weixin.qq.com/s/rN_N2ie4mVU00zcSiGMQxg)
 
 # 方法
 通过网线调试的优点有只要插上网线，电脑可以随便放了，我在研一用无线网卡貌似也可以配置调试环境，可以用一台调试计算机可以调试多台网络内的目标计算机，而且网卡非常常见，现在的计算机已经很少有串口和1394 fire wire。至于usb，我还没研究怎么搞到适当的连接线连接两台电脑，微软的网页也懒得看了，配一种方式够用即可。

@@ -19,6 +19,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Vitis Embedded Platform Source](https://github.com/Xilinx/Vitis_Embedded_Platform_Source)
 > [开发者分享 | Alveo加速卡上管理子系统 CMC 介绍](https://mp.weixin.qq.com/s/cNzFy_kRvvsnKO5_c4XGtg)
 > [开发者分享 | 如何在Vitis中设定Kernel 的频率](https://mp.weixin.qq.com/s/10zN5G_vJW8gDiKFtS8Y6Q)
+> [AR# 71754 Alveo 数据中心加速卡 — 定制流程 — 一般类信息和已知问题](https://china.xilinx.com/support/answers/71754.html)
+> [AR# 71757 Alveo Data Center Accelerator Card - Reverting Card to Factory image](https://china.xilinx.com/support/answers/71757.html)
 
 # Vitis
 老哥现在在Ubuntu18.04上，打开Vitis，platform可以是官方的，比如Alveo或者官方开发板或者第三方开发板，也可以是自己创建的，Windows上直接双击桌面图标打开即可，
@@ -97,7 +99,12 @@ $ vitis_analyzer mmult.hw_emu.xilinx_u50_gen3x16_xdma_201920_3.xclbin.run_summar
 ![2020-10-19 19-50-20.png](https://img-blog.csdnimg.cn/20201019195100670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70#pic_center)
 # Vivado
 如果需要用传统方法开发Alveo程序，需要下载一些文件，但是要申请，回去让公司直接找FAE要吧，Xilinx是不推荐这样玩的，还是乖乖的用Vitis吧。
-![19](https://img-blog.csdnimg.cn/20201008152402765.PNG#pic_center)
+![19](https://img-blog.csdnimg.cn/20201008152402765.PNG#pic_center)为确保客户映像在运行时成功加载到 Alveo 数据中心加速卡上，必须使用以下设置创建 MCS 文件，
+- 内存部件：mt25qu01g-spi-x1_x2_x4
+- 起始地址：0x01002000
+
+DDR，以U200为例，3个SLR，4个DDR，QSFP所在SLR2，对应DDR[3]，所以网络数据处理的时候优先使用DDR[3]，除非SLR2资源不够了，那就另当别论了。
+![2021-08-30 23-11-40](https://img-blog.csdnimg.cn/f829392d52c84582a708d75c94ae529e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)![2021-08-30 22-35-41](https://img-blog.csdnimg.cn/785038efc61b486da0a30a6860bcceb4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)
 # 问题
 ## AR# 73269
 试图在 Alveo U50 电路板上对配置内存器件进行编程时，如果将非配置分配信息 I/O 引脚设置为 "Pull-up"状态，则在对 MCS 进行编程时会出现以下错误：

@@ -25,6 +25,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [ubuntu 12.04中iscsi target和initiator的安装和使用](http://blog.chinaunix.net/uid-20940095-id-3487049.html)
 > [Ubuntu 中 iSCSI Target 和 Initiator 的使用](https://www.iteye.com/blog/e2718282-1739281)
 > [iscsi磁盘挂载并设置为开机自动挂载](https://blog.csdn.net/jiyiyun/article/details/103798730)
+> [libiscsi 一个有意思的 BUG](https://zhuanlan.zhihu.com/p/81508370)
+> [sahlberg/libiscsi](https://github.com/sahlberg/libiscsi)
 
 # target
 ## centos
