@@ -12,8 +12,15 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [socket UDP广播的发送和接收示例](https://blog.csdn.net/mao0514/article/details/89203203)
 > [关于UDP接收icmp端口不可达(port unreachable)](http://blog.chinaunix.net/uid-28458801-id-4990181.html)
 
+# UDP收发
+> [UDP通信](https://blog.csdn.net/fanle93/article/details/90666484)
+> [linux下实现UDP通信](https://www.cnblogs.com/ssyfj/p/12107455.html)
+
 # UDP服务器回复端口不可达
-ECONNREFUSED是ICMP返回的。
+ECONNREFUSED是ICMP返回的，ICMP是一种专门的控制协议，控制和指示IP层发生的事件，所以UDP也可以通过ICMP来获知端口不可达，
+```c
+setsockopt(fd, IPPROTO_IP, IP_RECVERR , &val, sizeof(int)); 
+```
 
 # SO_LINGER SO_REUSEADDR SO_REUSEPORT
 1. 设置 l_onoff为0，则该选项关闭，l_linger的值被忽略，等于内核缺省情况，close调用会立即返回给调用者，如果可能将会传输任何未发送的数据；

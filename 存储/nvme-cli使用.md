@@ -187,6 +187,10 @@ nguid   : 00000000000000000000000000000000
 eui64   : 0025385181b14235
 lbaf  0 : ms:0   lbads:9  rp:0 (in use)
 ```
+
+# 查看寿命
+nvme smart-log /dev/nvme*n1读取smart信息，其中percentage used表示寿命百分比，0表示全新，100表示寿命耗尽。
+
 # help
 ```shell
 root@zynqmp:~# nvme help

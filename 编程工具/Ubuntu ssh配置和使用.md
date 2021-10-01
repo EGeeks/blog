@@ -128,7 +128,10 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 UsePAM yes
 ```
 在最后方添加Ciphers配置，兼容所有ssh客户端，避免`Algorithm negotiation failed`，比如我的老版本SecureCRT就无法ssh登录板卡，
+```bash
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1
 ```
+```bash
 Ciphers aes128-cbc,aes192-cbc,aes256-cbc,aes128-ctr,aes192-ctr,aes256-ctr,3des-cbc,arcfour128,arcfour256,arcfour,blowfish-cbc,cast128-cbc
 MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-sha1-96,hmac-md5-96
 KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group1-sha1,curve25519-sha256@libssh.org
@@ -145,4 +148,10 @@ aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
 变成这样aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
 
 
+# SFTP
+远程命令`cd`，本地命令`lcd`，
+```bash
+$ ssh root@***.20.77.109
+$ sftp root@***.20.77.109
+```
 

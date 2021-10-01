@@ -4,6 +4,20 @@ QQ群：**852283276**
 微信公众号：**青儿创客基地**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
+# log
+> [用verilog实现log2的一种方法](https://www.cnblogs.com/fimwest/p/8052468.html)
+> [Verilog几个这样的写法](https://zhuanlan.zhihu.com/p/114823546)
+
+# 系统函数
+> [Verilog系统函数（一） $display](https://blog.csdn.net/Reborn_Lee/article/details/89792937)
+> [verilog中的 $display和 $wirte](https://blog.csdn.net/xs1326962515/article/details/78050593)
+
+格式化输出打印，
+```c
+$display("data_head_field_id=0x%h, data_head_field_size=%d", data_head_field_id, data_head_field_size);
+```
+`$stop`暂停仿真，输入run继续，`$finish`停止仿真
+
 # 运算符`**`
 表示次幂。
 

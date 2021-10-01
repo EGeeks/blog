@@ -5,7 +5,7 @@ QQ群：**852283276**
 B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.com/208826118)
 
 # 创建Linux工程
-点击`File > New > Application Project`，
+打开SDK，点击`File > New > Application Project`，
 ![357](https://img-blog.csdnimg.cn/20201222103747741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 自动弹出下面的窗口，按如下配置，
 ![358](https://img-blog.csdnimg.cn/20201222104013913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
@@ -29,7 +29,9 @@ SDK会自动编译生成应用程序，从下方的窗口可获取应用程序�
 ![366](https://img-blog.csdnimg.cn/2020122217202172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 
 # 创建裸机工程
-待续。。。
+导出HDF文件，在Vivado中，点击`File > Export > Export Hardware`，
+![419](https://img-blog.csdnimg.cn/92f5606af077494f9fcdc1008d6b0372.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)
+在Vivado中，点击`File > Launch SDK`，打开SDK，会自动创建hardware工程，
 
 # 调试裸机工程
 待续。。。

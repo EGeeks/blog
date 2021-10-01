@@ -8,6 +8,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [FPGA block RAM和distributed RAM区别](http://blog.sina.com.cn/s/blog_6a8c8c750100roii.html)
 > [【FPGA】关于Xilinx芯片中Block RAM和Distributed RAM 的区别](https://blog.csdn.net/u011327754/article/details/79741280)
 > [浅谈XILINX FPGA CLB单元 汇总 (CLB、LUT、存储单元、Distributed RAM、移位寄存器、多路复用器、进位逻辑(Carry Logic))](https://blog.csdn.net/vivid117/article/details/102841135)
+> [赛灵思（Xilinx）Block Ram预先存储数据及使用方法及地址定义](https://blog.csdn.net/sinat_25902709/article/details/87024730)
 
 1. 物理上看，Bram是fpga中定制的ram资源，Dram就是用逻辑单元拼出来的。
 2. 较大的存储应用，建议用Bram；零星的小ram，一般就用Dram。但这只是个一般原则，具体的使用得看整个设计中资源的冗余度和性能要求
@@ -28,6 +29,10 @@ ERROR: [BD 41-1273] Error running pre_propagate TCL procedure: ERROR: [Common 17
 
 ## coe初始化文件
 bd中，需使用stand alone模式才可以添加初始化文件。
+
+## Generating a 32-bit address interface
+使能则地址按位宽递增，否则按1递增。
+**从这点也看出来网上文章一大抄，大家有多浮躁，踏踏实实搞研究吧！**
 
 # FIFO
 ## axis data fifo

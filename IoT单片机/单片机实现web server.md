@@ -1,0 +1,11 @@
+﻿# 参考
+> [【STM32以太网在线培训】+ F769 WebServer](http://www.stmcu.org.cn/module/forum/thread-612674-1-1.html)
+> [用单片机实现 websever 网页服务器功能](https://blog.csdn.net/ZenNaiHeQiao/article/details/78766808)
+> [stm32 web服务器实现](https://blog.csdn.net/hujia414/article/details/53898471)
+> [推一个stm32F407WEBserver动态刷新网页的示例](http://www.stmcu.org.cn/module/forum/thread-616355-1-1.html)
+> [uip架构和局限](https://blog.csdn.net/qq_27741499/article/details/89963218)
+> [uIP各部分协议代码的分析](https://blog.csdn.net/kunkliu/article/details/81280226)
+> [uip下载](https://github.com/adamdunkels/uip)
+> [stm32web服务器开发笔记--1](https://www.cnblogs.com/roscangjie/p/14806028.html)
+> [stm32 web服务器实现](https://blog.csdn.net/hujia414/article/details/53898471)
+> [STM32移植lwip之建立web服务器](https://blog.csdn.net/q361750389/article/details/53442493)
