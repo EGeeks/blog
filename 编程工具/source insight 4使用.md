@@ -10,7 +10,11 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 # 关系图
 关系图中的函数可以锁定，只要你不主动刷新，关系图就不会变化。并且还可以多看一个（锁定后，首先找下一个需要查看的函数或变量，然后点击工具栏关系图按钮关闭再打开，即可看2个关系图。
 
-# source insight checking for modified files
+# 输入卡顿
+改大`Update recovery file`的值，取消`Background synchronization`，
+![421](https://img-blog.csdnimg.cn/24c328bc217e44ffb8428a1cc48aacfb.PNG?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+## source insight checking for modified files
 导致软件很卡，`optinos->preference->files`，将其中的`Reload externally modified files in background`去掉。
 > [source insight checking for modified files 问题解决](https://blog.csdn.net/qq_33929118/article/details/53330957)
 

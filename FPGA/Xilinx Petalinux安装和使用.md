@@ -148,6 +148,10 @@ $ petalinux-create -t modules --name broadcom-wl --enableINFO: Create modules: b
 $ petalinux-build
 $ petalinux-build -c broadcom-wl
 ```
+生成uImage，如果你想在zynq平台上使用jffs2，zynqmp平台不支持这个命令，
+```bash
+$ petalinux-package --image -c kernel --format uImage
+```
 创建BOOT.BIN，
 ```bash
 # $ petalinux-package --boot --fsbl <FSBL_ELF> --fpga <BITSTREAM> --u-boot --pmufw <PMUFW_ELF>
@@ -380,6 +384,7 @@ help:
 ```
 
 # 问题
+# error: expected identifier or '(' before string constant
 2019.1报错，
 ```bash
 | In file included from /home/developer/project/zynq-v2019.1/build/tmp/work/plnx_zynq7-xilinx-linux-gnueabi/u-boot-xlnx/v2019.01-xilinx-v2019.1+gitAUTOINC+d895ac5e94-r0/git/include/configs/platform-top.h:2,
@@ -406,3 +411,18 @@ help:
 	"bootenv=uEnv.txt\0" \ 
 ```
 
+# ERROR: Failed to source bitbake
+```bash
+$ cat build/build.log
+FileExistsError: [Errno 17] File exists: '/home/qe/program/petalinux-v2019.1-final/components/yocto/source/aarch64/buildtools/sysroots/x86_64-petalinux-linux/usr/bin/flock' -> '/home/qe/project/petalinux/zynqmp_vcu/build/tmp/hosttools/flock'
+# 由于工程copy到另一台电脑，删掉该路径下所有错误的link
+qe@ubuntu:~/project/petalinux/zynqmp_vcu$ ls -l /home/qe/project/petalinux/zynqmp_vcu/build/tmp/hosttools
+total 44
+...
+lrwxrwxrwx 1 qe qe 128 Sep 15 15:12 find -> /home/qe/program/petalinux-v2019.1-final/components/yocto/source/aarch64/buildtools/sysroots/x86_64-petalinux-linux/usr/bin/find
+lrwxrwxrwx 1 qe qe 117 Jul 27 10:07 flock -> /opt/Xilinx/Petalinux/2019.1/components/yocto/source/aarch64/buildtools/sysroots/x86_64-petalinux-linux/usr/bin/flock
+...
+```
+
+# Failed to open PetaLinux lib: librdi_commonxillic.so: cannot open shared object file
+安装错误，重新安装，安装路径需要先设置写权限。

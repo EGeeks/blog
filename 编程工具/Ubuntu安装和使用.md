@@ -36,6 +36,8 @@ $ export http_proxy=http://110.110.1.70:1080
 $ export https_proxy=http://110.110.1.70:1080
 $ sudo -E apt update
 ```
+设置全局代理，
+![422](https://img-blog.csdnimg.cn/6d35ec939cf84982a5c7f40d4ab0ff8a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 # 终端快捷键
 ctrl+alt+t打开一个terminal

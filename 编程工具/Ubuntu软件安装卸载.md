@@ -12,6 +12,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [ubuntu下安装程序的三种方法](https://www.cnblogs.com/xwdreamer/p/3623454.html)
 > [Ubuntu 清除缓存 apt-get命令参数](https://www.cnblogs.com/jiu0821/p/10760296.html)
 > [Ubuntu 镜像](https://developer.aliyun.com/mirror/ubuntu?spm=a2c6h.13651102.0.0.3e221b11s0bwoN)
+> [Ubuntu 20.04安装微信、QQ](https://blog.csdn.net/u013049553/article/details/115243047)
+> [【超简单，保姆级】❤️Linux 安装 Windows 软件，微信、QQ、TIM等，再也不用来回切换了！❤️【建议收藏】](https://blog.csdn.net/nyist_zxp/article/details/120597271)
 
 # dpkg命令
 查看已安装的软件包`dpkg -l`，
@@ -216,5 +218,54 @@ $ sudo rm /var/cache/apt/archives/lock
 上一次update没有完才用Ctrl+C结束，再次update出现这个错误，执行clean（`sudo rm -rf /var/cache/apt/archives/*`）
 ```bash
 sudo apt-get clean
+```
+
+# 32位软件支持
+```bash
+$ sudo dpkg --add-architecture i386
+$ sudo apt update
+$ sudo apt install zlib1g:i386
+```
+
+# 微信和QQ
+采用deepin的，输入框无法显示中文，都是方框乱码，但是发送出去显示的中文就对了，将就用吧。
+```bash
+$ dpkg -l | grep g++
+$ mkdir ubuntu-wechat
+$ cd ubuntu-wechat/
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-wine_2.18-22~rc0_all.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-wine32_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-wine32-preloader_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-wine32-tools_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-wine-binfmt_2.18-22~rc0_all.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-fonts-wine_2.18-22~rc0_all.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-libwine_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-libwine-dev_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine/deepin-libwine-dbg_2.18-22~rc0_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine-helper/deepin-wine-helper_1.2deepin8_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine-plugin/deepin-wine-plugin_1.0deepin2_amd64.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine-plugin-virtual/deepin-wine-plugin-virtual_1.0deepin3_all.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin-wine-uninstaller/deepin-wine-uninstaller_0.1deepin2_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/non-free/u/udis86/udis86_1.72-2_i386.deb
+$ wget http://packages.deepin.com/deepin/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_amd64.deb
+$ wget http://packages.deepin.com/deepin/pool/main/libj/libjpeg-turbo/libjpeg62-turbo_1.5.1-2_i386.deb
+$ sudo dpkg --add-architecture i386
+$ sudo apt update
+$ sudo dpkg --force-depends -i ./*.deb
+$ sudo apt install -fy
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.wechat/deepin.com.wechat_2.6.8.65deepin0_i386.deb
+$ sudo dpkg -i deepin.com.wechat_2.6.8.65deepin0_i386.deb
+$ sudp apt remove linuxqq
+$ sudo vim /opt/deepinwine/tools/run.sh 
+WINE_CMD="LC_ALL=zh_CN.UTF-8 deepin-wine"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
+$ wget http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_9.1.8deepin0_i386.deb
+$ sudo dpkg -i deepin.com.qq.im_9.1.8deepin0_i386.deb
+```
+微信接收的文件所在目录，
+```bash
+~/.deepinwine/Deepin-WeChat/drive_c/users/qe/My Documents/WeChat Files/Zhu_Zhu_2009/FileStorage/File
 ```
 
