@@ -41,7 +41,7 @@ Vitis安装比较简单，双击安装文件，安装即可。Vitis最早从2019
 **2. 安装petalinux**
 首先在虚拟机上安装Petalinux的依赖软件，
 ```bash
-$ sudo apt install ssh make tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils
+$ sudo apt install vim ssh tftp-hpa tftpd-hpa dos2unix iproute2 gawk xvfb git make net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison libselinux1 gnupg wget diffstat chrpath socat xterm autoconf libtool tar unzip texinfo gcc-multilib build-essential libsdl1.2-dev libglib2.0-dev screen pax gzip zlib1g:i386 minicom u-boot-tools mtd-utils python device-tree-compiler
 ```
 开始安装Petalinux，比如安装在路径`/opt/pkg/petalinux-v2019.2-final`，可执行下面操作，
 ```bash
@@ -70,13 +70,48 @@ $ source /opt/Xilinx/Petalinux/2018.2/settings.sh
 
 2. 如果你使用官方下载BSP或者第三方提供的BSP，将bsp文件拷贝到虚拟机，执行下面命令，例如，
 ```bash
-$ petalinux-create -t project -s zynq-v2018.2.bsp
+$ petalinux-create -t project -s <your-bsp>.bsp
 ```
 
 ## 编译工程
 进入工程路径，执行命令，例如，
 ```bash
-$ cd zynq-v2018.2/
+$ cd <proj-dir>
 $ petalinux-build
+```
+
+## 生成固件
+启动引导文件，将vivado编译出的bit文件拷贝到工程路径下的images/linux文件夹，进入工程路径，执行命令，例如，具体流程参考[Xilinx Zynq ZynqMP boot文件生成与下载](https://blog.csdn.net/Zhu_Zhu_2009/article/details/111568016)
+```bash
+$ cd <proj-dir>
+$ petalinux-package --boot --fpga images/linux/pcierc_wrapper.bit --u-boot --force
+```
+生成的启动引导文件名是BOOT.BIN。
+
+## 烧录固件
+需要烧录两个文件，位于工程目录下，
+```bash
+<proj-dir>/images/linux/BOOT.BIN
+<proj-dir>/images/linux/image.ub
+```
+1. **BOOT.BIN**：对于新板卡，第一次需要用Vivado或SDK下载BOOT.BIN，具体流程参考[Xilinx Zynq ZynqMP boot文件生成与下载](https://blog.csdn.net/Zhu_Zhu_2009/article/details/111568016)，后面可以利用网络升级BOOT.BIN。在Vivado2015以后的版本，下载BOOT.BIN时需要使用zynq_fsbl.elf，该文件也位于`<proj-dir>/images/linux`。
+2. **image.ub**：下载完BOOT.BIN后重启板卡进入u-boot，利用u-boot下载或更新image.ub。
+
+## 工程介绍
+内核的配置文件位于`project-spec/meta-user/recipes-kernel/linux/linux-xlnx`中，例如，
+```bash
+$ ls -l <proj-dir>/project-spec/meta-user/recipes-kernel/linux/linux-xlnx
+total 20
+-rw-rw-r-- 1 qe qe 3245 Nov 27 10:32 user_2020-11-27-10-32-00.cfg
+-rw-rw-r-- 1 qe qe  102 Nov 30 11:47 user_2020-11-30-11-47-00.cfg
+```
+打开这些文件可以看到新增或者删减了什么内核配置项，
+```bash
+$ cat <proj-dir>/project-spec/meta-user/recipes-kernel/linux/linux-xlnx/user_2020-11-30-11-47-00.cfg 
+CONFIG_RTL8192EE=m
+CONFIG_RTLWIFI=m
+CONFIG_RTLWIFI_PCI=m
+CONFIG_RTLWIFI_DEBUG=y
+CONFIG_RTLBTCOEXIST=m
 ```
 

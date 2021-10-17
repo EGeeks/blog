@@ -15,6 +15,7 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [AM335x网络分析+KSZ9031分析（uboot中ping不通问题）](https://blog.csdn.net/qq_20753873/article/details/89139365)
 > [RGMII接口（KSZ9031）](https://blog.csdn.net/kemi450/article/details/91388581)
 > [SGMII、1000BASE-X、1000BASE-T区别](https://www.cnblogs.com/huakaimanlin/p/12867978.html)
+> [如何玩儿转千兆以太网？1000BASE-T1是1000BASE-T的升级版吗？信号地如何接到PE？](https://mp.weixin.qq.com/s/aYEmFlcixrDtKe-dGbWG0A)
 
 # PHY结构
 以88e1111为例，Symbol encoder/decoder即PCS，
