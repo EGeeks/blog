@@ -9,6 +9,8 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [LVGL 双缓冲](https://blog.csdn.net/C_ROOKIES/article/details/114163885)
 > [LVGL基础教程 – LVGL 显示接口](https://www.xyhtml5.com/22595.html)
 > [stm32 DMA2D使用中断LVGL,提高LVGL帧率](https://www.it610.com/article/1388268791955279872.htm)
+> [LVGL | lvgl最新版本在STM32上的移植使用](https://blog.csdn.net/zhengnianli/article/details/113931569)
+> [lvgl - 移植文件系统](https://www.jianshu.com/p/d0faa09598e6)
 
 # 字体
 > [分享的在littlevgl 调用freetye显示文字, 而不用通过字模软件生成](https://whycan.cn/t_1496.html)

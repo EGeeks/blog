@@ -13,13 +13,14 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 > [Initial Array Creation](https://raid.wiki.kernel.org/index.php/Initial_Array_Creation)
 > [Linux Software RAID的rebuild速度。](https://blog.csdn.net/weixin_34379433/article/details/92932702)
 > [linux mdadm raid阵列重建加速---bitmaps文件](https://www.cnblogs.com/xinyuyuanm/archive/2013/04/13/3019586.html)
+> [linux重组磁盘阵列,Linux下避免软Raid自动重组的技巧](https://blog.csdn.net/weixin_33158887/article/details/116799404)
 
 # 创建md
 ```bash
 $ sudo mdadm -v -C /dev/md5 -l 5 -n 4 -c64 /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1
 $ sudo mdadm -v -C /dev/md5 -l 5 -n 4 -c64 /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1
 ```
-保存到配置文件，否则会有`/dev/md127`的问题，
+保存到配置文件，否则会有`/dev/md127`的问题，后验证md127是由于md未达成clean状态，即写入数据，然后掉电重启导致，软raid为inactive，出现md127，
 ```bash
 # sudo mdadm -Ds >> /etc/mdadm.conf
 $ sudo mdadm --detail --scan >> /etc/mdadm.conf
@@ -29,6 +30,22 @@ $ sudo vim /etc/mdadm.conf
 $ sudo update-initramfs -u
 # or centos
 $ sudo dracut --force
+```
+禁用自动重组，在iscsi/nvmeof中需要使用，而且在我们的应用场景中，B板卡通过iscsi给A板卡4个盘，A板卡本身有4个盘，8个盘组raid5，这样一开机，4个盘先组了raid5且处于降级状态，等iscsi的4个盘连上后，就出现了降级和数据同步，所以必须禁用自动重组，
+```bash
+# 编辑配置文件/etc/default/mdadm：
+AUTOCHECK=false
+START_DAEMON=false
+# 在/etc/mdadm/mdadm.conf文件中增加一行，这时，我们手工重组软Raid，就不会出现降级和数据同步的情况了
+AUTO -all
+# 重建软raid
+root@ubuntu01:~# iscsiadm -m discovery -t st -p 192.168.1.4
+root@ubuntu01:~# iscsiadm -m discovery -t st -p 192.168.1.5
+root@ubuntu01:~# iscsiadm -m node -T iqn.2001-04.com.example:serv01 -l
+root@ubuntu01:~# cat /proc/mdstat
+root@ubuntu01:~# iscsiadm -m node -T iqn.2001-04.com.example:serv02 -l
+root@ubuntu01:~# mdadm -A /dev/md/mdtest /dev/sdb /dev/sdc
+root@ubuntu01:~# cat /proc/mdstat
 ```
 
 # 查看md

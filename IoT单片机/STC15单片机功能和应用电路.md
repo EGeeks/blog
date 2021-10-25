@@ -12,7 +12,6 @@ B站：[主页 `https://space.bilibili.com/208826118`](https://space.bilibili.co
 ![58](https://img-blog.csdnimg.cn/20210328185631386.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 常用LQPF44的管脚分布，2021，芯片缺货，SOP28停产，只能移植到LQPF44上，
 ![87](https://img-blog.csdnimg.cn/895cf51214a14591bfb59831359c5396.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiJ6YGN54yq,size_20,color_FFFFFF,t_70,g_se,x_16)
-
 IO配置，与STC8A保持一致，
 ![407](https://img-blog.csdnimg.cn/20210427152452166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1podV9aaHVfMjAwOQ==,size_16,color_FFFFFF,t_70)
 IAP功能的地址，STC15W4K48S4的扇区范围`0000h~27FFh`，
